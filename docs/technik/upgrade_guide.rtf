@@ -1,0 +1,75 @@
+{\rtf1\ansi\deff0
+{\fonttbl{\f0 Arial;}}
+\pard\sa200\sl276\slmult1\b\f0\fs32 docuflux: Upgrade-Anleitung\par}
+
+{\pard\sa200\sl276\slmult1\b\fs28 1. Wichtige Hinweise vor dem Upgrade\par}
+{\b0\fs24
+Dieses Dokument beschreibt den Upgrade-Prozess f\u252\u175r die Backend-Infrastruktur der docuflux-Plattform. Zuk\u252\u175nftige Upgrades k\u246\u146nnen Breaking Changes enthalten. F\u252\u175hren Sie vor jedem Upgrade ein vollst\u228\u164ndiges Backup der Datenbank und der hochgeladenen Dateien durch.\par
+
+```bash
+# Backup der Datenbank und Uploads
+cp database.sqlite database.sqlite.backup
+cp -r uploads uploads.backup
+```
+}
+
+{\pard\sa200\sl276\slmult1\b\fs28 2. Standard-Upgrade-Prozess\par}
+{\b0\fs24
+{\b Schritt 1: Neue Dependencies installieren\par}
+```bash
+cd server
+npm install
+```
+
+{\b Schritt 2: Umgebungsvariablen aktualisieren\par}
+Vergleichen Sie Ihre bestehende `.env`-Datei mit der neuen `env.example`-Datei und \u252\u175bernehmen Sie neue oder ge\u228\u164nderte Variablen. Ein kritischer Wert ist der `JWT_SECRET`, ohne den der Server nicht startet.\par
+
+{\b Schritt 3: Datenbank-Migrationen ausf\u252\u175hren (falls vorhanden)\par}
+```bash
+npm run migrate-db
+```
+
+{\b Schritt 4: Server neu starten\par}
+```bash
+# Development
+npm run dev
+
+# Production
+npm start
+```
+}
+
+{\pard\sa200\sl276\slmult1\b\fs28 3. \u220\u156berpr\u252\u175fung nach dem Upgrade\par}
+{\b0\fs24
+1.  {\b Server-Logs pr\u252\u175fen:}\b0  Stellen Sie sicher, dass der Server ohne Fehler startet.\par
+2.  {\b Neue Log-Dateien kontrollieren:}\b0  Pr\u252\u175fen Sie die `server/logs/`-Verzeichnisse auf neue Eintr\u228\u164ge.\par
+3.  {\b Frontend-Funktionalit\u228\u164t testen:}\b0  Testen Sie den Login, den Dokumenten-Upload und die Kernfunktionen der Plattform.\par
+}
+
+{\pard\sa200\sl276\slmult1\b\fs28 4. Wichtige \u196\u132nderungen und Verbesserungen\par}
+{\b0\fs24
+- \b Sicherheit:\b0  Implementierung von Bcrypt-Passwort-Hashing, Helmet f\u252\u175r HTTP-Header-Sicherheit und Rate-Limiting zum Schutz vor Brute-Force-Angriffen.\par
+- \b Logging:\b0  Strukturierte Logs in rotierten Dateien f\u252\u175r eine bessere Nachverfolgbarkeit und Fehleranalyse.\par
+- \b Architektur:\b0  Modulare Server-Struktur zur einfacheren Wartung und Erweiterung um neue Module (z.B. VertragsAI).\par
+- \b Fehlerbehandlung:\b0  Verbessertes Error-Handling mit Kontext-Logging zur schnelleren Identifizierung von Problemen.\par
+}
+
+{\pard\sa200\sl276\slmult1\b\fs28 5. Troubleshooting\par}
+{\b0\fs24
+- \b Problem: Server startet nicht mit `Error: JWT_SECRET is required`.\b0 \par
+  - \b L\u246\u146sung:\b0  Setzen Sie einen g\u252\u175ltigen `JWT_SECRET` in Ihrer `.env`-Datei.\par
+
+- \b Problem: Login funktioniert nach dem Upgrade nicht mehr.\b0 \par
+  - \b L\u246\u146sung:\b0  Dies ist normal, wenn sich der `JWT_SECRET` \u228\u164ndert. Melden Sie sich einfach neu an, um ein neues Token zu erhalten.\par
+}
+
+{\pard\sa200\sl276\slmult1\b\fs28 6. Rollback-Plan\par}
+{\b0\fs24
+Falls nach einem Upgrade kritische Probleme auftreten, die nicht sofort gel\u246\u146st werden k\u246\u146nnen, f\u252\u175hren Sie die folgenden Schritte aus:\par
+1.  Server stoppen.\par
+2.  Den vorherigen Git-Commit wiederherstellen (`git checkout HEAD~1`).\par
+3.  Das Datenbank-Backup wieder einspielen.\par
+4.  Die alten Dependencies mit `npm install` wiederherstellen.\par
+5.  Den Server neu starten.\par
+}
+}

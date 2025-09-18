@@ -1,0 +1,75 @@
+{\rtf1\ansi\deff0
+{\fonttbl{\f0 Arial;}}
+\pard\sa200\sl276\slmult1\b\f0\fs32 docuflux: MVP Setup-Anleitung\par}
+
+{\pard\sa200\sl276\slmult1\b\fs28 1. Technologie-Stack\par}
+{\b0\fs24
+{\b Backend:}\par
+- Express.js (Web-Framework)\par
+- SQLite (Datenbank f\u252\u175r MVP, sp\u228\u164ter PostgreSQL)\par
+- JWT (Authentifizierung)\par
+- OpenAI Vision API (OCR f\u252\u175r RechnungsAI)\par
+
+{\b Frontend:}\par
+- React 18 (UI-Framework)\par
+- Vite (Build-Tool)\par
+- Tailwind CSS (Styling)\par
+}
+
+{\pard\sa200\sl276\slmult1\b\fs28 2. Manuelle Einrichtung (f\u252\u175r Entwickler)\par}
+{\b0\fs24
+{\b Schritt 1: Backend Setup\par}
+```bash
+cd server
+npm install
+npm run init-db
+```
+
+{\b Schritt 2: Umgebungsvariablen konfigurieren\par}
+Erstellen Sie eine `server/.env`-Datei und f\u252\u175gen Sie die folgenden Schl\u252\u175ssel hinzu:
+```env
+JWT_SECRET=ihr-sicherer-jwt-schluessel
+OPENAI_API_KEY=ihr-openai-api-schluessel
+FRONTEND_URL=http://localhost:5173
+```
+
+{\b Schritt 3: Frontend starten\par}
+```bash
+npm run dev:frontend
+```
+
+{\b Schritt 4: Backend starten\par}
+```bash
+cd server
+npm run dev
+```
+Die Anwendung ist nun unter `http://localhost:5173` erreichbar.
+}
+
+{\pard\sa200\sl276\slmult1\b\fs28 3. MVP-Features (RechnungsAI Modul)\par}
+{\b0\fs24
+- Upload von Belegen (PDF, JPG, PNG)\par
+- OCR-Auslesen mit OpenAI Vision\par
+- Ampel-Logik zur Validierung (gr\u252\u175n, gelb, rot)\par
+- Regelbasierte Kategorisierung (SKR03/04)\par
+- Duplikaterkennung\par
+- CSV-Export f\u252\u175r DATEV\par
+- Benutzerverwaltung und Bearbeitung von Belegen\par
+}
+
+{\pard\sa200\sl276\slmult1\b\fs28 4. Datenbank-Schema (vereinfacht)\par}
+{\b0\fs24
+- `users` (id, email, password, company, role)\par
+- `documents` (id, user_id, file_path, supplier, invoice_number, date, amounts, status)\par
+- `categories` (id, user_id, name, skr_code)\par
+- `settings` (id, user_id, webhook_url, skr_version)\par
+}
+
+{\pard\sa200\sl276\slmult1\b\fs28 5. N\u228\u164chste Schritte in der Entwicklung\par}
+{\b0\fs24
+1. Migration von SQLite zu PostgreSQL f\u252\u175r die Produktionsumgebung.\par
+2. Implementierung von WebSockets f\u252\u175r Echtzeit-Updates.\par
+3. Optimierung der Oberfl\u228\u164che f\u252\u175r mobile Endger\u228\u164te.\par
+4. Integration von weiteren Login-Methoden (z.B. Google-Auth).\par
+}
+}
