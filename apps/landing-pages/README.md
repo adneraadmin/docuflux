@@ -1,0 +1,1 @@
+# Landing Pages\n\nDieses Verzeichnis enthält alle implementierten Landing Pages für die docuflux-Plattform:\n\n- **rechnungsai-berater/**: React-App für Freiberufler & Berater\n- **rechnungsai-handwerk/**: React-App für Handwerksbetriebe\n- **beta-landing/**: Beta-Tester Landing Page\n- **WordPress_Ready_HTML_OPTIMIZED.html**: WordPress-ready HTML-Version

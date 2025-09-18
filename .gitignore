@@ -1,0 +1,1 @@
+# Dependencies\nnode_modules/\n*.log\n\n# Build outputs\ndist/\nbuild/\n\n# Environment files\n.env\n.env.local\n\n# IDE files\n.vscode/\n.idea/\n\n# OS files\n.DS_Store\nThumbs.db
