@@ -1,0 +1,95 @@
+{\rtf1\ansi\deff0
+{\fonttbl{\f0 Arial;}}
+\pard\sa200\sl276\slmult1\b\f0\fs32 docuflux: Backend Refactoring-Dokumentation\par}
+
+{\pard\sa200\sl276\slmult1\b\fs28 \u220\u156berblick\par}
+{\b0\fs24
+Diese Dokumentation beschreibt die durchgef\u252\u175hrten Refactoring-Ma\u223\u159nahmen zur Verbesserung der Backend-Architektur der docuflux-Plattform.\par
+}
+
+{\pard\sa200\sl276\slmult1\b\fs28 1. Zentralisierte Konfiguration\par}
+{\b0\fs24
+- \b Neue Datei:\b0  `server/config.js` mit `envalid` f\u252\u175r Umgebungsvariablen-Validierung\par
+- \b JWT_SECRET:\b0  Ist jetzt Pflicht - Server startet nicht ohne g\u252\u175ltigen Wert\par
+- Alle Konfigurationswerte werden zentral verwaltet\par
+- Automatische Validierung und Typisierung der Umgebungsvariablen\par
+}
+
+{\pard\sa200\sl276\slmult1\b\fs28 2. Strukturiertes Logging\par}
+{\b0\fs24
+- \b Neue Datei:\b0  `server/utils/logger.js` mit `winston` und t\u228\u164glicher Log-Rotation\par
+- \b Log-Speicherung:\b0  Logs werden in `server/logs/` gespeichert:\par
+  - `combined-YYYY-MM-DD.log` - Alle Logs\par
+  - `error-YYYY-MM-DD.log` - Nur Fehler\par
+  - `access.log` - HTTP-Access-Logs\par
+- \b Strukturierte JSON-Logs:\b0  Mit Kontext (User-ID, Request-Details, etc.)\par
+- \b Automatische Rotation:\b0  Komprimierung und Rotation nach 14/30 Tagen\par
+}
+
+{\pard\sa200\sl276\slmult1\b\fs28 3. Datenbank-Modul\par}
+{\b0\fs24
+- \b Neue Datei:\b0  `server/db/index.js` als Database-Klasse\par
+- \b Automatische Initialisierung:\b0  Tabellen-Setup beim Server-Start\par
+- \b Performance-Optimierung:\b0  PRAGMA-Einstellungen (WAL, foreign_keys, etc.)\par
+- \b Indizierung:\b0  Indizes f\u252\u175r h\u228\u164ufige Abfragen\par
+- \b Fehlerbehandlung:\b0  Strukturierte Fehlerbehandlung mit Logging\par
+}
+
+{\pard\sa200\sl276\slmult1\b\fs28 4. Sichere Authentifizierung\par}
+{\b0\fs24
+- \b Neue Dateien:\b0 \par
+  - `server/middleware/auth.js` f\u252\u175r JWT-Middleware\par
+  - `server/routes/auth.js` mit bcrypt-Passwort-Hashing\par
+- \b Neue Route:\b0  `/api/auth/me` f\u252\u175r sichere Token-Validierung\par
+- \b Passwort-Migration:\b0  Automatische Migration von Klartext- zu gehashten Passw\u246\u146rtern\par
+- \b Erweiterte Sicherheit:\b0  Bessere Fehlerbehandlung und Logging f\u252\u175r Auth-Versuche\par
+}
+
+{\pard\sa200\sl276\slmult1\b\fs28 5. Modulare Server-Struktur\par}
+{\b0\fs24
+\b Neue Dateien:\b0 \par
+- `server/app.js` - Express-App mit Middleware\par
+- `server/server.js` - Server-Start und Error-Handling\par
+- `server/routes/documents.js` - Dokument-Routen\par
+- `server/routes/categories.js` - Kategorie-Routen\par
+- `server/routes/settings.js` - Einstellungen-Routen\par
+- `server/routes/stats.js` - Statistik-Routen\par
+- `server/services/ocr.js` - OCR/OpenAI-Service\par
+
+\b Vorteile:\b0 \par
+- Klare Trennung von Verantwortlichkeiten\par
+- Wiederverwendbare Module\par
+- Bessere Testbarkeit\par
+- Einfachere Wartung und Erweiterung\par
+}
+
+{\pard\sa200\sl276\slmult1\b\fs28 6. Sicherheitsverbesserungen\par}
+{\b0\fs24
+- \b helmet:\b0  F\u252\u175r HTTP-Security-Headers\par
+- \b express-rate-limit:\b0  Mit unterschiedlichen Limits:\par
+  - Allgemein: 300 Requests/15min\par
+  - Auth-Endpoints: 10 Requests/15min\par
+- \b Upload-Validierung:\b0  Verbesserte Datei-Upload-Validierung\par
+- \b CORS-Konfiguration:\b0  Sichere Cross-Origin-Einstellungen\par
+}
+
+{\pard\sa200\sl276\slmult1\b\fs28 7. Breaking Changes\par}
+{\b0\fs24
+- \b JWT_SECRET:\b0  Jetzt Pflicht (Server startet nicht ohne)\par
+- \b Entry-Point:\b0  `server.js` statt `index.js`\par
+- \b Passwort-Format:\b0  Automatische Migration zu bcrypt beim Login\par
+- \b Token-Validierung:\b0  Neue `/api/auth/me` Route statt Health-Check\par
+}
+
+{\pard\sa200\sl276\slmult1\b\fs28 8. Migration und Rollback\par}
+{\b0\fs24
+\b Upgrade-Schritte:\b0 \par
+1. Backup der Datenbank erstellen\par
+2. JWT_SECRET in .env setzen\par
+3. Neue Dependencies installieren (`npm install`)\par
+4. Server neu starten\par
+
+\b Rollback-Plan:\b0 \par
+Bei Problemen k\u246\u146nnen die alten Dateien aus Git wiederhergestellt und die Backup-Datenbank eingespielt werden.\par
+}
+}

@@ -1,0 +1,94 @@
+{\rtf1\ansi\deff0
+{\fonttbl{\f0 Arial;}}
+\pard\sa200\sl276\slmult1\b\f0\fs32 docuflux: Backend-Dokumentation\par}
+
+{\pard\sa200\sl276\slmult1\b\fs28 \u220\u156berblick\par}
+{\b0\fs24
+Express.js Backend f\u252\u175r die docuflux-Plattform mit dem RechnungsAI-Modul als erste Implementierung.\par
+}
+
+{\pard\sa200\sl276\slmult1\b\fs28 Setup-Anleitung\par}
+{\b0\fs24
+{\b 1. Abh\u228\u164ngigkeiten installieren:\par}
+```bash
+cd server
+npm install
+```
+
+{\b 2. Umgebungsvariablen konfigurieren:\par}
+```bash
+cp env.example .env
+```
+
+Bearbeiten Sie die `.env` Datei und setzen Sie:
+- `JWT_SECRET`: Ein sicherer JWT-Schl\u252\u175ssel
+- `OPENAI_API_KEY`: Ihr OpenAI API-Schl\u252\u175ssel  
+- `FRONTEND_URL`: URL des Frontends (Standard: http://localhost:5173)
+
+{\b 3. Datenbank initialisieren:\par}
+```bash
+npm run init-db
+```
+
+{\b 4. Server starten:\par}
+```bash
+# Entwicklung
+npm run dev
+
+# Produktion  
+npm start
+```
+}
+
+{\pard\sa200\sl276\slmult1\b\fs28 API Endpoints\par}
+{\b0\fs24
+{\b Authentifizierung:\par}
+- `POST /api/auth/register` - Benutzer registrieren
+- `POST /api/auth/login` - Benutzer anmelden
+
+{\b Dokumente:\par}
+- `POST /api/documents/upload` - Dokument hochladen
+- `GET /api/documents` - Alle Dokumente abrufen
+- `GET /api/documents/:id` - Einzelnes Dokument abrufen
+- `PUT /api/documents/:id` - Dokument aktualisieren
+- `DELETE /api/documents/:id` - Dokument l\u246\u146schen
+- `POST /api/documents/check-duplicates` - Duplikate pr\u252\u175fen
+
+{\b Kategorien:\par}
+- `GET /api/categories` - Alle Kategorien abrufen
+- `POST /api/categories` - Neue Kategorie erstellen
+- `PUT /api/categories/:id` - Kategorie aktualisieren
+
+{\b Einstellungen:\par}
+- `GET /api/settings` - Benutzereinstellungen abrufen
+- `PUT /api/settings` - Einstellungen aktualisieren
+}
+
+{\pard\sa200\sl276\slmult1\b\fs28 Technologie-Stack\par}
+{\b0\fs24
+- \b Express.js:\b0  Web-Framework
+- \b SQLite:\b0  Datenbank (MVP, sp\u228\u164ter PostgreSQL)
+- \b JWT:\b0  Authentifizierung
+- \b OpenAI Vision API:\b0  OCR f\u252\u175r Dokumentenerkennung
+- \b Multer:\b0  Datei-Upload-Handling
+- \b bcrypt:\b0  Passwort-Hashing
+}
+
+{\pard\sa200\sl276\slmult1\b\fs28 Datenbank-Schema\par}
+{\b0\fs24
+- \b users:\b0  (id, email, password, company, role, created_at)
+- \b documents:\b0  (id, user_id, name, file_path, supplier, invoice_number, date, amounts, status)
+- \b categories:\b0  (id, user_id, name, skr_code, description, active)
+- \b settings:\b0  (id, user_id, webhook_url, storage_path, skr_version)
+}
+
+{\pard\sa200\sl276\slmult1\b\fs28 Sicherheitsfeatures\par}
+{\b0\fs24
+- JWT-basierte Authentifizierung
+- Passwort-Hashing mit bcrypt
+- CORS-Konfiguration
+- Dateityp-Validierung
+- Gr\u246\u146\u223\u159enbeschr\u228\u164nkungen (10MB)
+- Rate-Limiting f\u252\u175r API-Endpoints
+}
+}
