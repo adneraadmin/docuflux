@@ -15,6 +15,7 @@ Diese Verzeichnisstruktur enthält die vollständige Content-Marketing-Strategie
 
 ### 📅 Planung (Content-Planung)
 - **content_plan.md/.rtf** - Detaillierter Redaktionsplan und Content-Themen nach Customer Journey
+- **emotional_content_plan.md/.rtf** - 🔥 Emotionalisierter Redaktionsplan mit Storytelling-Ansatz
 
 ## 🎯 Zielgruppen
 
