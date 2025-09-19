@@ -21,14 +21,14 @@ jobs:
           printf '%s\n' "${{ secrets.SSH_KNOWN_HOSTS }}" > ~/.ssh/known_hosts
           chmod 644 ~/.ssh/known_hosts
 
-      - name: Test SSH connectivity
+      - name: Test SSH connectivity (hardcoded)
         run: |
           ssh -vvv \
-            -p "${{ secrets.SSH_PORT }}" \
+            -p 22 \
             -i ~/.ssh/id_ed25519 \
             -o UserKnownHostsFile=~/.ssh/known_hosts \
             -o StrictHostKeyChecking=yes \
-            "${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST }}" "echo OK && whoami"
+            gf@168.231.109.89 "echo OK && whoami"
 
       - name: Rsync files to server
         run: |
