@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Docuflux für Buchhaltung - Coming Soon</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: linear-gradient(135deg, #059669 0%, #10b981 100%);
+            color: white;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            padding: 20px;
+        }
+        
+        .container {
+            max-width: 600px;
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            padding: 60px 40px;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+        
+        .logo {
+            font-size: 2.5rem;
+            font-weight: bold;
+            margin-bottom: 10px;
+            color: white;
+        }
+        
+        .tagline {
+            font-size: 1.2rem;
+            opacity: 0.9;
+            margin-bottom: 30px;
+        }
+        
+        h1 {
+            font-size: 2.2rem;
+            margin-bottom: 20px;
+            line-height: 1.2;
+        }
+        
+        p {
+            font-size: 1.1rem;
+            line-height: 1.6;
+            opacity: 0.9;
+            margin-bottom: 30px;
+        }
+        
+        .features {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+            margin: 40px 0;
+        }
+        
+        .feature {
+            background: rgba(255, 255, 255, 0.1);
+            padding: 20px;
+            border-radius: 10px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        
+        .feature h3 {
+            font-size: 1.1rem;
+            margin-bottom: 10px;
+        }
+        
+        .feature p {
+            font-size: 0.9rem;
+            margin: 0;
+        }
+        
+        .cta {
+            background: white;
+            color: #059669;
+            padding: 15px 30px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: bold;
+            font-size: 1.1rem;
+            display: inline-block;
+            transition: all 0.3s ease;
+            margin-top: 20px;
+        }
+        
+        .cta:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+        }
+        
+        .status {
+            margin-top: 40px;
+            padding: 20px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 10px;
+            border-left: 4px solid #10b981;
+        }
+        
+        @media (max-width: 768px) {
+            .container {
+                padding: 40px 20px;
+            }
+            
+            h1 {
+                font-size: 1.8rem;
+            }
+            
+            .features {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="logo">Docuflux</div>
+        <div class="tagline">für Buchhaltung & Steuerkanzleien</div>
+        
+        <h1>Speziell für Ihre Kanzlei entwickelt</h1>
+        
+        <p>
+            Die professionelle Lösung für Steuerberater und Buchhalter. 
+            Automatische Rechnungsprüfung mit DATEV-Integration und Mandantenverwaltung.
+        </p>
+        
+        <div class="features">
+            <div class="feature">
+                <h3>🏢 Mandantenverwaltung</h3>
+                <p>Separate Workflows für jeden Mandanten mit individuellen Regeln</p>
+            </div>
+            
+            <div class="feature">
+                <h3>📊 DATEV-Native</h3>
+                <p>Direkter Import/Export ohne Umwege - perfekt für Ihre Workflows</p>
+            </div>
+            
+            <div class="feature">
+                <h3>📋 Prüfprotokoll</h3>
+                <p>Lückenlose Dokumentation aller Prüfschritte für Compliance</p>
+            </div>
+        </div>
+        
+        <div class="status">
+            <h3>🚧 In Entwicklung</h3>
+            <p>
+                Wir entwickeln gerade die perfekte Lösung für Steuerkanzleien. 
+                Basierend auf Feedback von über 20 Steuerberatern.
+            </p>
+        </div>
+        
+        <a href="mailto:buchhaltung@docuflux.de" class="cta">
+            Frühzugang sichern
+        </a>
+        
+        <p style="margin-top: 30px; font-size: 0.9rem; opacity: 0.7;">
+            Verfügbar ab Q2 2025 | Exklusiver Beta-Zugang für Partner-Kanzleien
+        </p>
+    </div>
+</body>
+</html>

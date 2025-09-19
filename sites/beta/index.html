@@ -1,0 +1,294 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Docuflux Beta - Neue Features testen</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: linear-gradient(135deg, #7c3aed 0%, #a855f7 50%, #1e40af 100%);
+            color: white;
+            min-height: 100vh;
+            padding: 20px;
+        }
+        
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding-top: 40px;
+        }
+        
+        .header {
+            text-align: center;
+            margin-bottom: 50px;
+        }
+        
+        .logo {
+            font-size: 2.5rem;
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+        
+        .beta-badge {
+            background: #f59e0b;
+            color: white;
+            padding: 8px 16px;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            font-weight: bold;
+            display: inline-block;
+            margin-bottom: 20px;
+        }
+        
+        h1 {
+            font-size: 2.2rem;
+            margin-bottom: 20px;
+            line-height: 1.2;
+        }
+        
+        .intro {
+            font-size: 1.2rem;
+            opacity: 0.9;
+            text-align: center;
+            margin-bottom: 40px;
+            line-height: 1.6;
+        }
+        
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin-bottom: 50px;
+        }
+        
+        .feature-card {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border-radius: 15px;
+            padding: 30px;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            transition: transform 0.3s ease;
+        }
+        
+        .feature-card:hover {
+            transform: translateY(-5px);
+        }
+        
+        .feature-icon {
+            font-size: 2.5rem;
+            margin-bottom: 15px;
+            display: block;
+        }
+        
+        .feature-card h3 {
+            font-size: 1.3rem;
+            margin-bottom: 15px;
+            color: #f59e0b;
+        }
+        
+        .feature-card p {
+            line-height: 1.6;
+            opacity: 0.9;
+        }
+        
+        .status-badge {
+            display: inline-block;
+            padding: 4px 12px;
+            border-radius: 12px;
+            font-size: 0.8rem;
+            font-weight: bold;
+            margin-top: 10px;
+        }
+        
+        .status-new {
+            background: #10b981;
+            color: white;
+        }
+        
+        .status-testing {
+            background: #f59e0b;
+            color: white;
+        }
+        
+        .status-coming {
+            background: rgba(255, 255, 255, 0.2);
+            color: white;
+        }
+        
+        .cta-section {
+            text-align: center;
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            padding: 40px;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            margin-bottom: 40px;
+        }
+        
+        .cta-button {
+            background: white;
+            color: #7c3aed;
+            padding: 15px 30px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: bold;
+            font-size: 1.1rem;
+            display: inline-block;
+            transition: all 0.3s ease;
+            margin: 10px;
+        }
+        
+        .cta-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+        }
+        
+        .cta-secondary {
+            background: transparent;
+            color: white;
+            border: 2px solid white;
+        }
+        
+        .changelog {
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 15px;
+            padding: 30px;
+            margin-bottom: 30px;
+        }
+        
+        .changelog h2 {
+            margin-bottom: 20px;
+            color: #f59e0b;
+        }
+        
+        .changelog-item {
+            margin-bottom: 15px;
+            padding-left: 20px;
+            position: relative;
+        }
+        
+        .changelog-item::before {
+            content: "•";
+            position: absolute;
+            left: 0;
+            color: #10b981;
+            font-weight: bold;
+        }
+        
+        @media (max-width: 768px) {
+            .features-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .cta-section {
+                padding: 30px 20px;
+            }
+            
+            h1 {
+                font-size: 1.8rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <div class="logo">Docuflux</div>
+            <div class="beta-badge">BETA</div>
+            <h1>Neue Features zuerst testen</h1>
+            <p class="intro">
+                Seien Sie dabei, wenn wir die Zukunft der automatischen Rechnungsprüfung entwickeln. 
+                Exklusiver Zugang zu neuen Features und direkter Einfluss auf die Produktentwicklung.
+            </p>
+        </div>
+        
+        <div class="features-grid">
+            <div class="feature-card">
+                <span class="feature-icon">🤖</span>
+                <h3>KI-Verbesserungen</h3>
+                <p>
+                    Neue Machine Learning Algorithmen für noch präzisere Rechnungserkennung 
+                    und intelligentere Abweichungserkennung.
+                </p>
+                <span class="status-badge status-testing">In Tests</span>
+            </div>
+            
+            <div class="feature-card">
+                <span class="feature-icon">📱</span>
+                <h3>Mobile App</h3>
+                <p>
+                    Native iOS und Android App für Rechnungserfassung unterwegs. 
+                    Offline-Modus und Sync-Funktionalität.
+                </p>
+                <span class="status-badge status-new">Neu</span>
+            </div>
+            
+            <div class="feature-card">
+                <span class="feature-icon">🔗</span>
+                <h3>API-Integrationen</h3>
+                <p>
+                    Direkte Anbindung an ERP-Systeme, Warenwirtschaft und 
+                    weitere Buchhaltungssoftware über REST-API.
+                </p>
+                <span class="status-badge status-coming">Q1 2025</span>
+            </div>
+            
+            <div class="feature-card">
+                <span class="feature-icon">📊</span>
+                <h3>Analytics Dashboard</h3>
+                <p>
+                    Detaillierte Auswertungen zu Prüfzeiten, Fehlerquoten und 
+                    Kosteneinsparungen mit exportierbaren Reports.
+                </p>
+                <span class="status-badge status-testing">Beta</span>
+            </div>
+        </div>
+        
+        <div class="changelog">
+            <h2>📋 Aktuelle Beta-Features</h2>
+            <div class="changelog-item">
+                <strong>Bulk-Upload:</strong> Bis zu 50 Rechnungen gleichzeitig hochladen und verarbeiten
+            </div>
+            <div class="changelog-item">
+                <strong>Smart-Matching:</strong> Automatische Zuordnung von Rechnungen zu Bestellungen via KI
+            </div>
+            <div class="changelog-item">
+                <strong>Custom Rules:</strong> Individuelle Prüfregeln pro Lieferant definieren
+            </div>
+            <div class="changelog-item">
+                <strong>Team-Workflows:</strong> Mehrstufige Freigabeprozesse für größere Teams
+            </div>
+        </div>
+        
+        <div class="cta-section">
+            <h2>Beta-Tester werden</h2>
+            <p style="margin-bottom: 30px; opacity: 0.9;">
+                Kostenloser Zugang zu allen neuen Features. Ihre Meinung formt die Zukunft von Docuflux.
+            </p>
+            
+            <a href="mailto:beta@docuflux.de?subject=Beta-Tester Anmeldung" class="cta-button">
+                Jetzt Beta-Zugang anfordern
+            </a>
+            
+            <a href="#changelog" class="cta-button cta-secondary">
+                Changelog ansehen
+            </a>
+            
+            <p style="margin-top: 20px; font-size: 0.9rem; opacity: 0.7;">
+                Aktuell 127 aktive Beta-Tester | Nächstes Update: Ende Januar 2025
+            </p>
+        </div>
+        
+        <div style="text-align: center; padding: 20px; opacity: 0.7;">
+            <p>© 2025 Docuflux | Beta-Programm | <a href="mailto:feedback@docuflux.de" style="color: #f59e0b;">Feedback senden</a></p>
+        </div>
+    </div>
+</body>
+</html>
