@@ -1,0 +1,488 @@
+<!-- Verbesserter Ersparnisrechner - Ersetzt den aktuellen Rechner -->
+<section class="calculator-section">
+    <div class="container">
+        <div class="section-header">
+            <h2>Wie viel können Sie sparen?</h2>
+            <p>Berechnen Sie Ihre persönliche Zeitersparnis und den ROI mit RechnungsAI</p>
+        </div>
+        
+        <div class="calculator-card">
+            <div class="calculator-grid">
+                <!-- Input Seite -->
+                <div class="calculator-inputs">
+                    <h3 class="input-title">Ihre aktuellen Werte:</h3>
+                    
+                    <div class="input-group">
+                        <label for="belege-monat" class="input-label">Belege pro Monat</label>
+                        <input 
+                            type="number" 
+                            id="belege-monat" 
+                            class="calculator-input"
+                            placeholder="z.B. 150"
+                            value="150"
+                            min="1"
+                            max="1000"
+                        >
+                    </div>
+                    
+                    <div class="input-group">
+                        <label for="minuten-beleg" class="input-label">Minuten pro Beleg (aktuell)</label>
+                        <input 
+                            type="number" 
+                            id="minuten-beleg" 
+                            class="calculator-input"
+                            placeholder="z.B. 8"
+                            value="8"
+                            min="1"
+                            max="60"
+                        >
+                    </div>
+                    
+                    <div class="input-group">
+                        <label for="stundensatz" class="input-label">Ihr Stundensatz (€)</label>
+                        <input 
+                            type="number" 
+                            id="stundensatz" 
+                            class="calculator-input"
+                            placeholder="z.B. 120"
+                            value="120"
+                            min="10"
+                            max="1000"
+                        >
+                    </div>
+                    
+                    <button class="calculate-btn" onclick="calculateSavings()">
+                        Ersparnis berechnen
+                    </button>
+                </div>
+                
+                <!-- Ergebnisse Seite -->
+                <div class="calculator-results">
+                    <h3 class="results-title">Ihre Ersparnis:</h3>
+                    
+                    <div class="results-content">
+                        <div class="result-comparison">
+                            <div class="result-row">
+                                <span class="result-label">Aktuell pro Monat:</span>
+                                <span class="result-value current" id="zeit-aktuell">20.0h</span>
+                            </div>
+                            
+                            <div class="result-row">
+                                <span class="result-label">Mit RechnungsAI:</span>
+                                <span class="result-value improved" id="zeit-neu">2.5h</span>
+                            </div>
+                        </div>
+                        
+                        <div class="result-divider"></div>
+                        
+                        <div class="result-highlights">
+                            <div class="highlight-item">
+                                <span class="highlight-label">Zeitersparnis:</span>
+                                <span class="highlight-value" id="zeit-ersparnis">17.5h</span>
+                            </div>
+                            
+                            <div class="highlight-item">
+                                <span class="highlight-label">Mehrwert pro Monat:</span>
+                                <span class="highlight-value" id="geld-monat">€ 2.100</span>
+                            </div>
+                            
+                            <div class="highlight-item">
+                                <span class="highlight-label">Mehrwert pro Jahr:</span>
+                                <span class="highlight-value" id="geld-jahr">€ 25.200</span>
+                            </div>
+                            
+                            <div class="highlight-item roi-item">
+                                <span class="highlight-label">ROI im ersten Jahr:</span>
+                                <span class="highlight-value roi-value" id="roi-prozent">2.100%</span>
+                            </div>
+                        </div>
+                        
+                        <div class="savings-note">
+                            <p>💡 <strong>Hinweis:</strong> Berechnung basiert auf 1 Minute pro Beleg mit RechnungsAI vs. Ihrer aktuellen Zeit pro Beleg.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<style>
+/* Calculator Section Styles */
+.calculator-section {
+    background: linear-gradient(135deg, #1e40af 0%, #3b82f6 100%);
+    padding: 80px 0;
+    color: white;
+}
+
+.section-header {
+    text-align: center;
+    margin-bottom: 48px;
+}
+
+.section-header h2 {
+    font-size: 36px;
+    font-weight: bold;
+    margin-bottom: 16px;
+    color: white;
+}
+
+.section-header p {
+    font-size: 18px;
+    opacity: 0.9;
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+.calculator-card {
+    background: white;
+    border-radius: 16px;
+    padding: 40px;
+    box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+    color: #111827;
+}
+
+.calculator-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 48px;
+    align-items: start;
+}
+
+/* Input Section */
+.calculator-inputs {
+    display: flex;
+    flex-direction: column;
+}
+
+.input-title {
+    font-size: 20px;
+    font-weight: bold;
+    color: #1e40af;
+    margin-bottom: 24px;
+}
+
+.input-group {
+    margin-bottom: 20px;
+}
+
+.input-label {
+    display: block;
+    font-weight: 600;
+    color: #374151;
+    margin-bottom: 8px;
+    font-size: 14px;
+}
+
+.calculator-input {
+    width: 100%;
+    padding: 12px 16px;
+    border: 2px solid #e5e7eb;
+    border-radius: 8px;
+    font-size: 16px;
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+    background: white;
+}
+
+.calculator-input:focus {
+    outline: none;
+    border-color: #1e40af;
+    box-shadow: 0 0 0 3px rgba(30, 64, 175, 0.1);
+}
+
+.calculate-btn {
+    background: #ea580c;
+    color: white;
+    border: none;
+    padding: 16px 32px;
+    border-radius: 8px;
+    font-weight: 600;
+    font-size: 16px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    margin-top: 8px;
+    width: 100%;
+}
+
+.calculate-btn:hover {
+    background: #dc2626;
+    transform: translateY(-2px);
+    box-shadow: 0 10px 25px -5px rgba(234, 88, 12, 0.4);
+}
+
+/* Results Section */
+.calculator-results {
+    background: linear-gradient(135deg, #059669 0%, #10b981 100%);
+    color: white;
+    padding: 32px;
+    border-radius: 12px;
+    position: relative;
+    overflow: hidden;
+}
+
+.calculator-results::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(45deg, rgba(255,255,255,0.1) 0%, rgba(255,255,255,0.05) 100%);
+    pointer-events: none;
+}
+
+.results-title {
+    font-size: 20px;
+    font-weight: bold;
+    margin-bottom: 24px;
+    position: relative;
+    z-index: 1;
+}
+
+.results-content {
+    position: relative;
+    z-index: 1;
+}
+
+.result-comparison {
+    margin-bottom: 20px;
+}
+
+.result-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 12px;
+    padding: 8px 0;
+}
+
+.result-label {
+    font-size: 14px;
+    opacity: 0.9;
+}
+
+.result-value {
+    font-weight: bold;
+    font-size: 16px;
+}
+
+.result-value.current {
+    color: #fecaca;
+}
+
+.result-value.improved {
+    color: #bbf7d0;
+}
+
+.result-divider {
+    height: 1px;
+    background: rgba(255, 255, 255, 0.3);
+    margin: 20px 0;
+}
+
+.result-highlights {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.highlight-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 8px 0;
+}
+
+.highlight-label {
+    font-size: 14px;
+    font-weight: 500;
+}
+
+.highlight-value {
+    font-weight: bold;
+    font-size: 18px;
+}
+
+.roi-item {
+    border-top: 1px solid rgba(255, 255, 255, 0.3);
+    padding-top: 16px;
+    margin-top: 8px;
+}
+
+.roi-value {
+    font-size: 24px;
+    color: #fbbf24;
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+.savings-note {
+    margin-top: 20px;
+    padding: 16px;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 8px;
+    border-left: 4px solid #fbbf24;
+}
+
+.savings-note p {
+    margin: 0;
+    font-size: 13px;
+    line-height: 1.4;
+}
+
+/* Responsive Design */
+@media (max-width: 1024px) {
+    .calculator-grid {
+        gap: 32px;
+    }
+    
+    .calculator-card {
+        padding: 32px;
+    }
+}
+
+@media (max-width: 768px) {
+    .calculator-section {
+        padding: 60px 0;
+    }
+    
+    .calculator-grid {
+        grid-template-columns: 1fr;
+        gap: 32px;
+    }
+    
+    .calculator-card {
+        padding: 24px;
+    }
+    
+    .section-header h2 {
+        font-size: 28px;
+    }
+    
+    .section-header p {
+        font-size: 16px;
+    }
+}
+
+@media (max-width: 480px) {
+    .calculator-results {
+        padding: 24px;
+    }
+    
+    .highlight-value {
+        font-size: 16px;
+    }
+    
+    .roi-value {
+        font-size: 20px;
+    }
+}
+
+/* Animation for results update */
+.highlight-value, .result-value {
+    transition: all 0.3s ease;
+}
+
+.highlight-value.updated, .result-value.updated {
+    transform: scale(1.05);
+    color: #fbbf24;
+}
+</style>
+
+<script>
+// Verbesserter Rechner mit detaillierteren Berechnungen
+function calculateSavings() {
+    // Input-Werte holen
+    const belege = parseInt(document.getElementById('belege-monat').value) || 150;
+    const minutenAktuell = parseInt(document.getElementById('minuten-beleg').value) || 8;
+    const stundensatz = parseInt(document.getElementById('stundensatz').value) || 120;
+    
+    // Berechnungen (basierend auf Original-Logik)
+    const aktuelleZeitStunden = (belege * minutenAktuell) / 60; // Aktuelle Zeit in Stunden
+    const neueZeitStunden = (belege * 1) / 60; // Mit RechnungsAI: 1 Min pro Beleg
+    const zeitersparnis = aktuelleZeitStunden - neueZeitStunden;
+    const geldersparnisMonat = zeitersparnis * stundensatz;
+    const geldersparnisJahr = geldersparnisMonat * 12;
+    
+    // ROI Berechnung (Annahme: 100€/Monat Kosten für RechnungsAI)
+    const kostenJahr = 100 * 12; // 1200€ pro Jahr
+    const roi = ((geldersparnisJahr - kostenJahr) / kostenJahr) * 100;
+    
+    // Ergebnisse anzeigen mit Animation
+    updateResultWithAnimation('zeit-aktuell', aktuelleZeitStunden.toFixed(1) + 'h');
+    updateResultWithAnimation('zeit-neu', neueZeitStunden.toFixed(1) + 'h');
+    updateResultWithAnimation('zeit-ersparnis', zeitersparnis.toFixed(1) + 'h');
+    updateResultWithAnimation('geld-monat', '€ ' + geldersparnisMonat.toLocaleString('de-DE'));
+    updateResultWithAnimation('geld-jahr', '€ ' + geldersparnisJahr.toLocaleString('de-DE'));
+    updateResultWithAnimation('roi-prozent', Math.max(0, roi).toFixed(0) + '%');
+    
+    // Tracking für Analytics (optional)
+    if (typeof gtag !== 'undefined') {
+        gtag('event', 'calculator_used', {
+            'event_category': 'engagement',
+            'belege_monat': belege,
+            'minuten_beleg': minutenAktuell,
+            'stundensatz': stundensatz,
+            'ersparnis_jahr': geldersparnisJahr
+        });
+    }
+}
+
+function updateResultWithAnimation(elementId, value) {
+    const element = document.getElementById(elementId);
+    if (element) {
+        element.classList.add('updated');
+        element.textContent = value;
+        
+        setTimeout(() => {
+            element.classList.remove('updated');
+        }, 300);
+    }
+}
+
+// Auto-Berechnung bei Input-Änderung (optional)
+document.addEventListener('DOMContentLoaded', function() {
+    const inputs = document.querySelectorAll('.calculator-input');
+    
+    inputs.forEach(input => {
+        input.addEventListener('input', function() {
+            // Debounce für bessere Performance
+            clearTimeout(this.calculateTimeout);
+            this.calculateTimeout = setTimeout(() => {
+                calculateSavings();
+            }, 500);
+        });
+    });
+    
+    // Initiale Berechnung
+    calculateSavings();
+});
+
+// Input-Validierung
+function validateInputs() {
+    const belege = document.getElementById('belege-monat');
+    const minuten = document.getElementById('minuten-beleg');
+    const stundensatz = document.getElementById('stundensatz');
+    
+    // Belege: 1-1000
+    if (belege.value < 1) belege.value = 1;
+    if (belege.value > 1000) belege.value = 1000;
+    
+    // Minuten: 1-60
+    if (minuten.value < 1) minuten.value = 1;
+    if (minuten.value > 60) minuten.value = 60;
+    
+    // Stundensatz: 10-1000
+    if (stundensatz.value < 10) stundensatz.value = 10;
+    if (stundensatz.value > 1000) stundensatz.value = 1000;
+}
+
+// Event Listener für Validierung
+document.addEventListener('DOMContentLoaded', function() {
+    const inputs = document.querySelectorAll('.calculator-input');
+    
+    inputs.forEach(input => {
+        input.addEventListener('blur', validateInputs);
+        input.addEventListener('change', validateInputs);
+    });
+});
+</script>

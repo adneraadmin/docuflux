@@ -1,0 +1,172 @@
+<!-- Testimonial-Sektion - Zwischen Rechner und Formular einfügen -->
+<section class="testimonial-section">
+    <div class="container">
+        <div class="section-header">
+            <h2>Das sagen unsere Beta-Tester</h2>
+            <p>Bereits über 50 Berater sparen Zeit mit RechnungsAI.</p>
+        </div>
+        
+        <div class="testimonials-grid">
+            <!-- Testimonial 1 -->
+            <div class="testimonial-card">
+                <div class="stars">
+                    <span class="star">★</span>
+                    <span class="star">★</span>
+                    <span class="star">★</span>
+                    <span class="star">★</span>
+                    <span class="star">★</span>
+                </div>
+                <blockquote class="testimonial-quote">
+                    "RechnungsAI hat meine Buchhaltung revolutioniert. Ich spare wirklich 5 Stunden pro Woche 
+                    und kann mich endlich wieder auf meine Kunden konzentrieren."
+                </blockquote>
+                <div class="testimonial-author">
+                    <div class="author-avatar">MS</div>
+                    <div class="author-info">
+                        <div class="author-name">Michael Schmidt</div>
+                        <div class="author-company">Unternehmensberater, Hamburg</div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Testimonial 2 -->
+            <div class="testimonial-card">
+                <div class="stars">
+                    <span class="star">★</span>
+                    <span class="star">★</span>
+                    <span class="star">★</span>
+                    <span class="star">★</span>
+                    <span class="star">★</span>
+                </div>
+                <blockquote class="testimonial-quote">
+                    "Die automatische Projektzuordnung ist genial. Endlich muss ich nicht mehr jeden Beleg 
+                    manuell kategorisieren. Das spart enorm viel Zeit."
+                </blockquote>
+                <div class="testimonial-author">
+                    <div class="author-avatar">AK</div>
+                    <div class="author-info">
+                        <div class="author-name">Andrea Klein</div>
+                        <div class="author-company">IT-Beraterin, München</div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Testimonial 3 -->
+            <div class="testimonial-card">
+                <div class="stars">
+                    <span class="star">★</span>
+                    <span class="star">★</span>
+                    <span class="star">★</span>
+                    <span class="star">★</span>
+                    <span class="star">★</span>
+                </div>
+                <blockquote class="testimonial-quote">
+                    "Meine Mandanten lieben RechnungsAI. Die DATEV-Integration funktioniert perfekt 
+                    und ich bekomme viel sauberere Daten als früher."
+                </blockquote>
+                <div class="testimonial-author">
+                    <div class="author-avatar">TW</div>
+                    <div class="author-info">
+                        <div class="author-name">Thomas Weber</div>
+                        <div class="author-company">Steuerberater, Berlin</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<style>
+/* Testimonial Section Styles */
+.testimonial-section {
+    background: #f9fafb;
+    padding: 80px 0;
+}
+
+.testimonials-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 32px;
+    margin-top: 48px;
+}
+
+.testimonial-card {
+    background: white;
+    border-radius: 12px;
+    padding: 32px;
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.testimonial-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.15);
+}
+
+.stars {
+    display: flex;
+    gap: 4px;
+    margin-bottom: 16px;
+}
+
+.star {
+    color: #fbbf24;
+    font-size: 20px;
+}
+
+.testimonial-quote {
+    font-size: 16px;
+    line-height: 1.6;
+    color: #4b5563;
+    margin-bottom: 24px;
+    font-style: italic;
+    border: none;
+    padding: 0;
+}
+
+.testimonial-author {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.author-avatar {
+    width: 48px;
+    height: 48px;
+    background: #1e40af;
+    color: white;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: bold;
+    font-size: 16px;
+}
+
+.author-name {
+    font-weight: 600;
+    color: #111827;
+    margin-bottom: 4px;
+}
+
+.author-company {
+    font-size: 14px;
+    color: #6b7280;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .testimonial-section {
+        padding: 60px 0;
+    }
+    
+    .testimonials-grid {
+        grid-template-columns: 1fr;
+        gap: 24px;
+    }
+    
+    .testimonial-card {
+        padding: 24px;
+    }
+}
+</style>
