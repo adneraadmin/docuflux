@@ -2,8 +2,8 @@ name: Deploy to VPS
 
 on:
   push:
-    branches: [ "main" ]      # ggf. anpassen (z. B. "master")
-  workflow_dispatch:          # manueller Start möglich
+    branches: [ "main" ]      # ggf. auf "master" ändern
+  workflow_dispatch:          # manueller Start
 
 jobs:
   deploy:
@@ -35,3 +35,28 @@ jobs:
           BASH
           bash test-ssh.sh
 
+      - name: Rsync files to server (hardcoded)
+        shell: bash
+        run: |
+          cat > deploy-rsync.sh <<'BASH'
+          set -euo pipefail
+          rsync -az --delete \
+            --exclude ".git" \
+            --exclude ".github" \
+            -e "ssh -p 22 -i ~/.ssh/id_ed25519 -o UserKnownHostsFile=~/.ssh/known_hosts -o StrictHostKeyChecking=yes" \
+            ./ gf@168.231.109.89:/opt/docuflux/
+          BASH
+          bash deploy-rsync.sh
+
+      - name: Run remote deploy.sh
+        shell: bash
+        run: |
+          cat > run-remote.sh <<'BASH'
+          set -euo pipefail
+          ssh -p 22 \
+            -i ~/.ssh/id_ed25519 \
+            -o UserKnownHostsFile=~/.ssh/known_hosts \
+            -o StrictHostKeyChecking=yes \
+            gf@168.231.109.89 '/opt/docuflux/deploy.sh'
+          BASH
+          bash run-remote.sh
