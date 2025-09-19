@@ -48,7 +48,7 @@ jobs:
           BASH
           bash deploy-rsync.sh
 
-      - name: Run remote deploy.sh
+      - name: Run remote deploy script
         shell: bash
         run: |
           cat > run-remote.sh <<'BASH'
@@ -57,6 +57,6 @@ jobs:
             -i ~/.ssh/id_ed25519 \
             -o UserKnownHostsFile=~/.ssh/known_hosts \
             -o StrictHostKeyChecking=yes \
-            gf@168.231.109.89 '/opt/docuflux/deploy.sh'
+            gf@168.231.109.89 '/usr/local/bin/docuflux-deploy.sh'
           BASH
           bash run-remote.sh
