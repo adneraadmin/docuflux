@@ -1,0 +1,24 @@
+FROM nginx:alpine
+
+# Copy custom nginx configuration
+COPY nginx-multi.conf /etc/nginx/conf.d/default.conf
+
+# Copy all sites to nginx html directory
+COPY sites/ /usr/share/nginx/html/
+
+# Create domain-specific directories and copy content
+RUN mkdir -p /usr/share/nginx/html/kmu.docuflux.de && \
+    mkdir -p /usr/share/nginx/html/handwerk.docuflux.de && \
+    mkdir -p /usr/share/nginx/html/buchhaltung.docuflux.de && \
+    mkdir -p /usr/share/nginx/html/beta.docuflux.de
+
+# Copy site content to domain directories
+COPY sites/kmu/ /usr/share/nginx/html/kmu.docuflux.de/
+COPY sites/handwerk/ /usr/share/nginx/html/handwerk.docuflux.de/
+COPY sites/buchhaltung/ /usr/share/nginx/html/buchhaltung.docuflux.de/
+COPY sites/beta/ /usr/share/nginx/html/beta.docuflux.de/
+
+# Set proper permissions
+RUN chmod -R 755 /usr/share/nginx/html/
+
+EXPOSE 80

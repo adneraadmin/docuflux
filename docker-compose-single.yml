@@ -1,0 +1,41 @@
+version: '3.8'
+
+services:
+  docuflux-all:
+    build:
+      context: .
+      dockerfile: Dockerfile.all
+    container_name: docuflux-all
+    restart: unless-stopped
+    ports:
+      - "80:80"
+    labels:
+      - "traefik.enable=true"
+      
+      # KMU domain
+      - "traefik.http.routers.kmu.rule=Host(`kmu.docuflux.de`)"
+      - "traefik.http.routers.kmu.tls.certresolver=letsencrypt"
+      - "traefik.http.routers.kmu.service=docuflux-all"
+      
+      # Handwerk domain  
+      - "traefik.http.routers.handwerk.rule=Host(`handwerk.docuflux.de`)"
+      - "traefik.http.routers.handwerk.tls.certresolver=letsencrypt"
+      - "traefik.http.routers.handwerk.service=docuflux-all"
+      
+      # Buchhaltung domain
+      - "traefik.http.routers.buchhaltung.rule=Host(`buchhaltung.docuflux.de`)"
+      - "traefik.http.routers.buchhaltung.tls.certresolver=letsencrypt"
+      - "traefik.http.routers.buchhaltung.service=docuflux-all"
+      
+      # Beta domain
+      - "traefik.http.routers.beta.rule=Host(`beta.docuflux.de`)"
+      - "traefik.http.routers.beta.tls.certresolver=letsencrypt"
+      - "traefik.http.routers.beta.service=docuflux-all"
+      
+      # Service definition
+      - "traefik.http.services.docuflux-all.loadbalancer.server.port=80"
+
+networks:
+  default:
+    external:
+      name: traefik
