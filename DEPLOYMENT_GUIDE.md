@@ -221,3 +221,4 @@ Bei Problemen:
 
 **Status:** 🚧 Deployment-ready, GitHub Actions Fix erforderlich
 # Branch renamed to main for GitHub Actions compatibility
+# Container rebuild trigger - Fri Sep 19 07:24:35 EDT 2025
