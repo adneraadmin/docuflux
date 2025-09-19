@@ -7,6 +7,7 @@ Diese Verzeichnisstruktur enthält die vollständige Content-Marketing-Strategie
 ### Hauptdokumente
 - **content_strategy.md/.rtf** - Vollständige Content-Strategie mit allen Details
 - **content_strategy_summary.md/.rtf** - Executive Summary mit den wichtigsten Punkten
+- **emotional_content_framework.md/.rtf** - 🔥 Emotionale Content-Strategie für höhere Conversion
 
 ### 📊 Research (Marktforschung)
 - **keyword_research_analysis.md/.rtf** - SEO-Analyse und Keyword-Recherche für den deutschen Markt
@@ -39,6 +40,7 @@ Diese Verzeichnisstruktur enthält die vollständige Content-Marketing-Strategie
 
 **Für Geschäftsführung:** Beginnen Sie mit `content_strategy_summary.rtf`  
 **Für Marketing-Team:** Vollständige Strategie in `content_strategy.rtf`  
+**Für Content-Creator:** 🔥 Emotionale Ansätze in `emotional_content_framework.rtf`  
 **Für SEO-Manager:** Keyword-Analyse in `research/keyword_research_analysis.rtf`  
 **Für Content-Manager:** Redaktionsplan in `planung/content_plan.rtf`
 
