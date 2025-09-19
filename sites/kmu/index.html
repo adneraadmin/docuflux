@@ -1,0 +1,720 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Docuflux – KI-gestützte Rechnungsprüfung für KMU</title>
+    <meta name="description" content="Prüfen Sie Eingangsrechnungen automatisch gegen Angebote & Lieferscheine. Vorkontierung & Übergabe an den Steuerberater inklusive.">
+    
+    <!-- Preload Critical CSS -->
+    <link rel="preload" href="../shared-styles.css" as="style" onload="this.rel='stylesheet'">
+    <link rel="preload" href="assets/css/kmu-styles.css" as="style" onload="this.rel='stylesheet'">
+    <noscript>
+        <link rel="stylesheet" href="../shared-styles.css">
+        <link rel="stylesheet" href="assets/css/kmu-styles.css">
+    </noscript>
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/svg+xml" href="assets/img/favicon.svg">
+    
+    <!-- Open Graph -->
+    <meta property="og:title" content="Docuflux – KI-gestützte Rechnungsprüfung für KMU">
+    <meta property="og:description" content="Automatischer Abgleich mit Angeboten & Lieferscheinen. Vorkontierung inklusive.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://kmu.docuflux.de">
+    
+    <!-- Structured Data -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "SoftwareApplication",
+        "name": "Docuflux",
+        "description": "KI-gestützte Rechnungsprüfung für KMU",
+        "applicationCategory": "BusinessApplication",
+        "operatingSystem": "Web",
+        "offers": {
+            "@type": "Offer",
+            "price": "0",
+            "priceCurrency": "EUR",
+            "description": "Kostenlose Beta-Version"
+        }
+    }
+    </script>
+</head>
+<body>
+    <!-- Header Navigation -->
+    <header class="main-header">
+        <div class="container">
+            <div class="header-content">
+                <div class="logo">
+                    <h1>Docuflux</h1>
+                </div>
+                
+                <nav class="main-navigation">
+                    <ul class="nav-menu">
+                        <li><a href="#features" class="nav-link">Features</a></li>
+                        <li><a href="#benefits" class="nav-link">Vorteile</a></li>
+                        <li><a href="#pricing" class="nav-link">Preise</a></li>
+                        <li><a href="#faq" class="nav-link">FAQ</a></li>
+                    </ul>
+                </nav>
+                
+                <div class="header-cta">
+                    <a href="#demo" class="btn btn-primary">Demo anfragen</a>
+                </div>
+                
+                <!-- Mobile Menu Button -->
+                <button class="mobile-menu-btn" onclick="toggleMobileMenu()">
+                    <span class="hamburger-line"></span>
+                    <span class="hamburger-line"></span>
+                    <span class="hamburger-line"></span>
+                </button>
+            </div>
+            
+            <!-- Mobile Navigation -->
+            <nav class="mobile-navigation" id="mobile-nav">
+                <ul class="mobile-nav-menu">
+                    <li><a href="#features" class="mobile-nav-link" onclick="closeMobileMenu()">Features</a></li>
+                    <li><a href="#benefits" class="mobile-nav-link" onclick="closeMobileMenu()">Vorteile</a></li>
+                    <li><a href="#pricing" class="mobile-nav-link" onclick="closeMobileMenu()">Preise</a></li>
+                    <li><a href="#faq" class="mobile-nav-link" onclick="closeMobileMenu()">FAQ</a></li>
+                    <li>
+                        <a href="#demo" class="btn btn-primary mobile-cta" onclick="closeMobileMenu()">Demo anfragen</a>
+                    </li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero-section section-lg">
+        <div class="container">
+            <div class="hero-grid">
+                <div class="hero-content">
+                    <div class="hero-badges">
+                        <span class="badge badge-success">DSGVO-konform</span>
+                        <span class="badge badge-primary">Deutsche Server</span>
+                        <span class="badge badge-gray">DATEV-Integration</span>
+                    </div>
+                    
+                    <h1 class="hero-title">
+                        Rechnungen richtig, schnell & prüfbar
+                    </h1>
+                    
+                    <p class="hero-description">
+                        Docuflux automatisiert die Rechnungsprüfung mit KI – DATEV-konform und DSGVO-sicher. 
+                        Perfekt für KMU, die Eingangsrechnungen effizient gegen Angebote und Lieferscheine prüfen möchten.
+                    </p>
+                    
+                    <div class="hero-cta">
+                        <a href="#demo" class="btn btn-primary btn-lg">
+                            Demo anfragen
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M5 12h14M12 5l7 7-7 7"/>
+                            </svg>
+                        </a>
+                        <a href="#video" class="btn btn-secondary btn-lg">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <polygon points="5,3 19,12 5,21"/>
+                            </svg>
+                            One-Pager (PDF)
+                        </a>
+                    </div>
+                    
+                    <div class="hero-trust">
+                        <div class="trust-item">
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/>
+                                <polyline points="22,4 12,14.01 9,11.01"/>
+                            </svg>
+                            Keine Kreditkarte erforderlich
+                        </div>
+                        <div class="trust-item">
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/>
+                                <polyline points="22,4 12,14.01 9,11.01"/>
+                            </svg>
+                            3 Monate kostenlos
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="hero-mockup">
+                    <div class="mockup-card">
+                        <div class="mockup-header">
+                            <h3>Rechnung automatisch geprüft</h3>
+                            <span class="badge badge-success">✓ Abgeglichen</span>
+                        </div>
+                        <div class="mockup-content">
+                            <div class="mockup-row">
+                                <span>Betrag:</span>
+                                <span class="mockup-value">€ 2.847,50</span>
+                            </div>
+                            <div class="mockup-row">
+                                <span>Datum:</span>
+                                <span class="mockup-value">15.09.2025</span>
+                            </div>
+                            <div class="mockup-row">
+                                <span>Lieferant:</span>
+                                <span class="mockup-value">Büroausstattung GmbH</span>
+                            </div>
+                            <div class="mockup-row">
+                                <span>Angebot:</span>
+                                <span class="mockup-value">AG-2025-0892</span>
+                            </div>
+                            <div class="mockup-row">
+                                <span>Abweichung:</span>
+                                <span class="mockup-value success">€ 0,00</span>
+                            </div>
+                        </div>
+                        <button class="btn btn-primary mockup-btn">
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/>
+                                <polyline points="7,10 12,15 17,10"/>
+                                <line x1="12" y1="15" x2="12" y2="3"/>
+                            </svg>
+                            DATEV-Export
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Problem Section -->
+    <section class="problem-section section bg-gray-50">
+        <div class="container">
+            <div class="section-header text-center">
+                <h2>Kennen Sie das auch?</h2>
+                <p>Als KMU-Entscheider verbringen Sie zu viel Zeit mit manueller Rechnungsprüfung statt mit Ihrem Kerngeschäft.</p>
+            </div>
+            
+            <div class="problem-grid grid md:grid-cols-3 gap-6">
+                <div class="problem-card card">
+                    <div class="problem-icon">
+                        <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="#ef4444" stroke-width="2">
+                            <circle cx="12" cy="12" r="10"/>
+                            <polyline points="12,6 12,12 16,14"/>
+                        </svg>
+                    </div>
+                    <h3>5-8 Stunden pro Woche</h3>
+                    <p>Rechnungen manuell gegen Angebote und Lieferscheine prüfen kostet wertvolle Zeit für strategische Aufgaben.</p>
+                </div>
+                
+                <div class="problem-card card">
+                    <div class="problem-icon">
+                        <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="#ef4444" stroke-width="2">
+                            <path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/>
+                            <line x1="12" y1="9" x2="12" y2="13"/>
+                            <line x1="12" y1="17" x2="12.01" y2="17"/>
+                        </svg>
+                    </div>
+                    <h3>Fehlerhafte Abrechnungen</h3>
+                    <p>Abweichungen zwischen Angebot und Rechnung werden oft übersehen – das kostet Geld und Vertrauen.</p>
+                </div>
+                
+                <div class="problem-card card">
+                    <div class="problem-icon">
+                        <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="#ef4444" stroke-width="2">
+                            <rect x="3" y="4" width="18" height="18" rx="2" ry="2"/>
+                            <line x1="16" y1="2" x2="16" y2="6"/>
+                            <line x1="8" y1="2" x2="8" y2="6"/>
+                            <line x1="3" y1="10" x2="21" y2="10"/>
+                        </svg>
+                    </div>
+                    <h3>Buchhaltung wartet</h3>
+                    <p>Die Aufbereitung für DATEV und den Steuerberater verzögert sich, weil die Prüfung zu lange dauert.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Solution Section -->
+    <section id="features" class="solution-section section">
+        <div class="container">
+            <div class="section-header text-center">
+                <h2>So einfach geht moderne Rechnungsprüfung</h2>
+                <p>Drei einfache Schritte – und Ihre Rechnungsprüfung läuft automatisch.</p>
+            </div>
+            
+            <div class="solution-grid grid md:grid-cols-3 gap-8">
+                <div class="solution-step text-center">
+                    <div class="step-icon">
+                        <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2">
+                            <path d="M14.5 4h-5L7 7H4a2 2 0 0 0-2 2v9a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V9a2 2 0 0 0-2-2h-3l-2.5-3z"/>
+                            <circle cx="12" cy="13" r="3"/>
+                        </svg>
+                    </div>
+                    <h3>1. Dokumente hochladen</h3>
+                    <p>Rechnung, Angebot und Lieferschein einfach per Drag & Drop oder Scanner-App hochladen.</p>
+                </div>
+                
+                <div class="solution-step text-center">
+                    <div class="step-icon step-icon-green">
+                        <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2">
+                            <path d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z"/>
+                        </svg>
+                    </div>
+                    <h3>2. KI prüft automatisch</h3>
+                    <p>Unsere KI extrahiert alle Daten und gleicht Rechnung gegen Angebot und Lieferschein ab.</p>
+                </div>
+                
+                <div class="solution-step text-center">
+                    <div class="step-icon step-icon-orange">
+                        <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2">
+                            <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/>
+                            <polyline points="7,10 12,15 17,10"/>
+                            <line x1="12" y1="15" x2="12" y2="3"/>
+                        </svg>
+                    </div>
+                    <h3>3. DATEV-Export mit einem Klick</h3>
+                    <p>Geprüfte und vorkontierte Daten direkt an Ihren Steuerberater – ohne manuelle Nacharbeit.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Calculator Section -->
+    <section id="benefits" class="calculator-section section bg-primary text-white">
+        <div class="container">
+            <div class="section-header text-center">
+                <h2>Wie viel können Sie sparen?</h2>
+                <p>Berechnen Sie Ihre persönliche Zeitersparnis und den ROI mit Docuflux</p>
+            </div>
+            
+            <div class="calculator-card">
+                <div class="calculator-grid">
+                    <!-- Input Seite -->
+                    <div class="calculator-inputs">
+                        <h3>Ihre aktuellen Werte:</h3>
+                        
+                        <div class="form-group">
+                            <label for="rechnungen-monat" class="form-label">Eingangsrechnungen pro Monat</label>
+                            <input 
+                                type="number" 
+                                id="rechnungen-monat" 
+                                class="form-input"
+                                placeholder="z.B. 80"
+                                value="80"
+                                min="1"
+                                max="500"
+                            >
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="minuten-rechnung" class="form-label">Minuten pro Rechnung (aktuell)</label>
+                            <input 
+                                type="number" 
+                                id="minuten-rechnung" 
+                                class="form-input"
+                                placeholder="z.B. 12"
+                                value="12"
+                                min="1"
+                                max="60"
+                            >
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="stundensatz-kmu" class="form-label">Ihre Arbeitszeit-Bewertung (€/h)</label>
+                            <input 
+                                type="number" 
+                                id="stundensatz-kmu" 
+                                class="form-input"
+                                placeholder="z.B. 80"
+                                value="80"
+                                min="20"
+                                max="500"
+                            >
+                        </div>
+                        
+                        <button class="btn btn-primary calculate-btn" onclick="calculateKMUSavings()">
+                            Ersparnis berechnen
+                        </button>
+                    </div>
+                    
+                    <!-- Ergebnisse Seite -->
+                    <div class="calculator-results">
+                        <h3>Ihre Ersparnis:</h3>
+                        
+                        <div class="results-content">
+                            <div class="result-comparison">
+                                <div class="result-row">
+                                    <span>Aktuell pro Monat:</span>
+                                    <span class="result-value current" id="zeit-aktuell-kmu">16.0h</span>
+                                </div>
+                                
+                                <div class="result-row">
+                                    <span>Mit Docuflux:</span>
+                                    <span class="result-value improved" id="zeit-neu-kmu">2.7h</span>
+                                </div>
+                            </div>
+                            
+                            <div class="result-divider"></div>
+                            
+                            <div class="result-highlights">
+                                <div class="highlight-item">
+                                    <span>Zeitersparnis:</span>
+                                    <span class="highlight-value" id="zeit-ersparnis-kmu">13.3h</span>
+                                </div>
+                                
+                                <div class="highlight-item">
+                                    <span>Mehrwert pro Monat:</span>
+                                    <span class="highlight-value" id="geld-monat-kmu">€ 1.064</span>
+                                </div>
+                                
+                                <div class="highlight-item">
+                                    <span>Mehrwert pro Jahr:</span>
+                                    <span class="highlight-value" id="geld-jahr-kmu">€ 12.768</span>
+                                </div>
+                                
+                                <div class="highlight-item roi-item">
+                                    <span>ROI im ersten Jahr:</span>
+                                    <span class="highlight-value roi-value" id="roi-prozent-kmu">964%</span>
+                                </div>
+                            </div>
+                            
+                            <div class="savings-note">
+                                <p>💡 <strong>Hinweis:</strong> Berechnung basiert auf 2 Minuten pro Rechnung mit Docuflux vs. Ihrer aktuellen Prüfzeit.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonials Section -->
+    <section class="testimonials-section section bg-gray-50">
+        <div class="container">
+            <div class="section-header text-center">
+                <h2>Das sagen unsere Beta-Tester</h2>
+                <p>Bereits über 30 KMU sparen Zeit mit Docuflux.</p>
+            </div>
+            
+            <div class="testimonials-grid grid md:grid-cols-3 gap-6">
+                <div class="testimonial-card card">
+                    <div class="testimonial-stars">
+                        <span class="star">★</span>
+                        <span class="star">★</span>
+                        <span class="star">★</span>
+                        <span class="star">★</span>
+                        <span class="star">★</span>
+                    </div>
+                    <blockquote>
+                        "Docuflux hat unsere Rechnungsprüfung revolutioniert. Wir sparen wirklich 10 Stunden pro Woche 
+                        und können uns endlich auf unser Wachstum konzentrieren."
+                    </blockquote>
+                    <div class="testimonial-author">
+                        <div class="author-avatar">MS</div>
+                        <div class="author-info">
+                            <div class="author-name">Marcus Schneider</div>
+                            <div class="author-company">Geschäftsführer, TechSolutions GmbH</div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="testimonial-card card">
+                    <div class="testimonial-stars">
+                        <span class="star">★</span>
+                        <span class="star">★</span>
+                        <span class="star">★</span>
+                        <span class="star">★</span>
+                        <span class="star">★</span>
+                    </div>
+                    <blockquote>
+                        "Die automatische Abgleichung ist genial. Endlich werden Abweichungen sofort erkannt 
+                        und wir zahlen nicht mehr zu viel."
+                    </blockquote>
+                    <div class="testimonial-author">
+                        <div class="author-avatar">AK</div>
+                        <div class="author-info">
+                            <div class="author-name">Andrea Klein</div>
+                            <div class="author-company">Einkaufsleiterin, Möbel Klein KG</div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="testimonial-card card">
+                    <div class="testimonial-stars">
+                        <span class="star">★</span>
+                        <span class="star">★</span>
+                        <span class="star">★</span>
+                        <span class="star">★</span>
+                        <span class="star">★</span>
+                    </div>
+                    <blockquote>
+                        "Unser Steuerberater ist begeistert. Die DATEV-Integration funktioniert perfekt 
+                        und wir bekommen viel sauberere Daten."
+                    </blockquote>
+                    <div class="testimonial-author">
+                        <div class="author-avatar">TW</div>
+                        <div class="author-info">
+                            <div class="author-name">Thomas Weber</div>
+                            <div class="author-company">CFO, Logistik Weber AG</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section id="demo" class="cta-section section bg-primary text-white">
+        <div class="container">
+            <div class="cta-content text-center">
+                <h2>Starten Sie jetzt Ihre kostenlose Demo</h2>
+                <p>Testen Sie Docuflux 30 Tage kostenlos und unverbindlich. Keine Kreditkarte erforderlich.</p>
+                
+                <div class="cta-form-card">
+                    <form class="cta-form" onsubmit="handleDemoRequest(event)">
+                        <div class="form-grid">
+                            <div class="form-group">
+                                <label for="demo-name" class="form-label">Vor- und Nachname *</label>
+                                <input 
+                                    type="text" 
+                                    id="demo-name" 
+                                    name="name"
+                                    class="form-input" 
+                                    required
+                                    placeholder="Max Mustermann"
+                                >
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="demo-email" class="form-label">E-Mail-Adresse *</label>
+                                <input 
+                                    type="email" 
+                                    id="demo-email" 
+                                    name="email"
+                                    class="form-input" 
+                                    required
+                                    placeholder="max@unternehmen.de"
+                                >
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="demo-company" class="form-label">Unternehmen</label>
+                                <input 
+                                    type="text" 
+                                    id="demo-company" 
+                                    name="company"
+                                    class="form-input"
+                                    placeholder="Mustermann GmbH"
+                                >
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="demo-phone" class="form-label">Telefon</label>
+                                <input 
+                                    type="tel" 
+                                    id="demo-phone" 
+                                    name="phone"
+                                    class="form-input"
+                                    placeholder="+49 30 12345678"
+                                >
+                            </div>
+                        </div>
+                        
+                        <button type="submit" class="btn btn-primary btn-lg cta-submit">
+                            Kostenlose Demo anfragen
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M5 12h14M12 5l7 7-7 7"/>
+                            </svg>
+                        </button>
+                        
+                        <div class="form-trust">
+                            <div class="trust-item">
+                                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/>
+                                    <polyline points="22,4 12,14.01 9,11.01"/>
+                                </svg>
+                                30 Tage kostenlos
+                            </div>
+                            <div class="trust-item">
+                                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/>
+                                    <polyline points="22,4 12,14.01 9,11.01"/>
+                                </svg>
+                                Jederzeit kündbar
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FAQ Section -->
+    <section id="faq" class="faq-section section">
+        <div class="container">
+            <div class="section-header text-center">
+                <h2>Häufig gestellte Fragen</h2>
+                <p>Alles was Sie über Docuflux wissen müssen.</p>
+            </div>
+            
+            <div class="faq-grid">
+                <div class="faq-item">
+                    <button class="faq-question" onclick="toggleFAQ(this)">
+                        <span>Wie sicher sind meine Daten bei Docuflux?</span>
+                        <svg class="faq-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <polyline points="6,9 12,15 18,9"/>
+                        </svg>
+                    </button>
+                    <div class="faq-answer">
+                        <p>Ihre Daten werden ausschließlich auf deutschen Servern verarbeitet und sind DSGVO-konform geschützt. Wir verwenden Ende-zu-Ende-Verschlüsselung und haben ISO 27001 Zertifizierung.</p>
+                    </div>
+                </div>
+                
+                <div class="faq-item">
+                    <button class="faq-question" onclick="toggleFAQ(this)">
+                        <span>Welche Dateiformate werden unterstützt?</span>
+                        <svg class="faq-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <polyline points="6,9 12,15 18,9"/>
+                        </svg>
+                    </button>
+                    <div class="faq-answer">
+                        <p>Docuflux verarbeitet PDF, JPG, PNG und TIFF-Dateien. Auch gescannte Dokumente und Smartphone-Fotos werden zuverlässig erkannt.</p>
+                    </div>
+                </div>
+                
+                <div class="faq-item">
+                    <button class="faq-question" onclick="toggleFAQ(this)">
+                        <span>Wie funktioniert die DATEV-Integration?</span>
+                        <svg class="faq-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <polyline points="6,9 12,15 18,9"/>
+                        </svg>
+                    </button>
+                    <div class="faq-answer">
+                        <p>Docuflux exportiert die geprüften Daten direkt im DATEV-Format. Ihr Steuerberater kann die Dateien ohne weitere Bearbeitung importieren.</p>
+                    </div>
+                </div>
+                
+                <div class="faq-item">
+                    <button class="faq-question" onclick="toggleFAQ(this)">
+                        <span>Was kostet Docuflux nach der Beta-Phase?</span>
+                        <svg class="faq-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <polyline points="6,9 12,15 18,9"/>
+                        </svg>
+                    </button>
+                    <div class="faq-answer">
+                        <p>Beta-Tester erhalten dauerhaft 50% Rabatt. Die regulären Preise starten bei 99€/Monat für bis zu 100 Rechnungen. Alle Beta-Tester zahlen maximal 49€/Monat.</p>
+                    </div>
+                </div>
+                
+                <div class="faq-item">
+                    <button class="faq-question" onclick="toggleFAQ(this)">
+                        <span>Wie genau ist die KI-Erkennung?</span>
+                        <svg class="faq-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <polyline points="6,9 12,15 18,9"/>
+                        </svg>
+                    </button>
+                    <div class="faq-answer">
+                        <p>Unsere KI erreicht eine Erkennungsgenauigkeit von über 98% bei deutschen Rechnungen. Unklare Fälle werden zur manuellen Prüfung markiert.</p>
+                    </div>
+                </div>
+                
+                <div class="faq-item">
+                    <button class="faq-question" onclick="toggleFAQ(this)">
+                        <span>Gibt es eine API für die Integration?</span>
+                        <svg class="faq-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <polyline points="6,9 12,15 18,9"/>
+                        </svg>
+                    </button>
+                    <div class="faq-answer">
+                        <p>Ja, Docuflux bietet eine REST-API für die Integration in bestehende ERP-Systeme. Dokumentation und Testumgebung sind verfügbar.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="main-footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3 class="footer-title">Docuflux</h3>
+                    <p class="footer-description">
+                        KI-gestützte Rechnungsprüfung für KMU. 
+                        DSGVO-konform und DATEV-kompatibel.
+                    </p>
+                    <div class="social-links">
+                        <a href="#" class="social-link" aria-label="LinkedIn">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+                                <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/>
+                            </svg>
+                        </a>
+                        <a href="#" class="social-link" aria-label="YouTube">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+                                <path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/>
+                            </svg>
+                        </a>
+                    </div>
+                </div>
+                
+                <div class="footer-section">
+                    <h4 class="footer-subtitle">Produkt</h4>
+                    <ul class="footer-links">
+                        <li><a href="#features" class="footer-link">Features</a></li>
+                        <li><a href="#pricing" class="footer-link">Preise</a></li>
+                        <li><a href="#datev" class="footer-link">DATEV-Integration</a></li>
+                        <li><a href="#api" class="footer-link">API</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-section">
+                    <h4 class="footer-subtitle">Support</h4>
+                    <ul class="footer-links">
+                        <li><a href="#help" class="footer-link">Hilfe-Center</a></li>
+                        <li><a href="#contact" class="footer-link">Kontakt</a></li>
+                        <li><a href="#docs" class="footer-link">Dokumentation</a></li>
+                        <li><a href="#status" class="footer-link">System-Status</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-section">
+                    <h4 class="footer-subtitle">Kontakt</h4>
+                    <ul class="footer-contact">
+                        <li class="contact-item">
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/>
+                                <polyline points="22,6 12,13 2,6"/>
+                            </svg>
+                            <a href="mailto:hello@docuflux.de" class="footer-link">hello@docuflux.de</a>
+                        </li>
+                        <li class="contact-item">
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/>
+                            </svg>
+                            <a href="tel:+4930123456789" class="footer-link">+49 (0) 30 12345678</a>
+                        </li>
+                        <li class="contact-item">
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/>
+                                <circle cx="12" cy="10" r="3"/>
+                            </svg>
+                            <span class="footer-text">Berlin, Deutschland</span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="footer-bottom">
+                <div class="footer-bottom-content">
+                    <p class="copyright">
+                        © 2025 Docuflux. Alle Rechte vorbehalten.
+                    </p>
+                    <div class="legal-links">
+                        <a href="/impressum" class="legal-link">Impressum</a>
+                        <a href="/datenschutz" class="legal-link">Datenschutz</a>
+                        <a href="/agb" class="legal-link">AGB</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- JavaScript -->
+    <script src="assets/js/kmu-scripts.js"></script>
+</body>
+</html>

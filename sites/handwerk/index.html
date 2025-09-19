@@ -1,0 +1,718 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Docuflux – Mehr Zeit für die Baustelle statt Papierkram</title>
+    <meta name="description" content="Rechnungsprüfung automatisiert – damit Sie sich auf Ihr Handwerk konzentrieren können. DATEV-Export inklusive.">
+    
+    <!-- Preload Critical CSS -->
+    <link rel="preload" href="../shared-styles.css" as="style" onload="this.rel='stylesheet'">
+    <link rel="preload" href="assets/css/handwerk-styles.css" as="style" onload="this.rel='stylesheet'">
+    <noscript>
+        <link rel="stylesheet" href="../shared-styles.css">
+        <link rel="stylesheet" href="assets/css/handwerk-styles.css">
+    </noscript>
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/svg+xml" href="assets/img/favicon.svg">
+    
+    <!-- Open Graph -->
+    <meta property="og:title" content="Docuflux – Mehr Zeit für die Baustelle statt Papierkram">
+    <meta property="og:description" content="Automatische Rechnungsprüfung für Handwerksbetriebe. Weniger Büroarbeit, mehr Zeit für Kunden.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://handwerk.docuflux.de">
+    
+    <!-- Structured Data -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "SoftwareApplication",
+        "name": "Docuflux für Handwerk",
+        "description": "Automatische Rechnungsprüfung für Handwerksbetriebe",
+        "applicationCategory": "BusinessApplication",
+        "operatingSystem": "Web",
+        "audience": {
+            "@type": "Audience",
+            "audienceType": "Handwerksbetriebe"
+        }
+    }
+    </script>
+</head>
+<body>
+    <!-- Header Navigation -->
+    <header class="main-header">
+        <div class="container">
+            <div class="header-content">
+                <div class="logo">
+                    <h1>Docuflux</h1>
+                    <span class="logo-tagline">für Handwerk</span>
+                </div>
+                
+                <nav class="main-navigation">
+                    <ul class="nav-menu">
+                        <li><a href="#features" class="nav-link">Funktionen</a></li>
+                        <li><a href="#benefits" class="nav-link">Vorteile</a></li>
+                        <li><a href="#preise" class="nav-link">Preise</a></li>
+                        <li><a href="#faq" class="nav-link">FAQ</a></li>
+                    </ul>
+                </nav>
+                
+                <div class="header-cta">
+                    <a href="#demo" class="btn btn-primary">Kostenlos testen</a>
+                </div>
+                
+                <!-- Mobile Menu Button -->
+                <button class="mobile-menu-btn" onclick="toggleMobileMenu()">
+                    <span class="hamburger-line"></span>
+                    <span class="hamburger-line"></span>
+                    <span class="hamburger-line"></span>
+                </button>
+            </div>
+            
+            <!-- Mobile Navigation -->
+            <nav class="mobile-navigation" id="mobile-nav">
+                <ul class="mobile-nav-menu">
+                    <li><a href="#features" class="mobile-nav-link" onclick="closeMobileMenu()">Funktionen</a></li>
+                    <li><a href="#benefits" class="mobile-nav-link" onclick="closeMobileMenu()">Vorteile</a></li>
+                    <li><a href="#preise" class="mobile-nav-link" onclick="closeMobileMenu()">Preise</a></li>
+                    <li><a href="#faq" class="mobile-nav-link" onclick="closeMobileMenu()">FAQ</a></li>
+                    <li>
+                        <a href="#demo" class="btn btn-primary mobile-cta" onclick="closeMobileMenu()">Kostenlos testen</a>
+                    </li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero-section section-lg">
+        <div class="container">
+            <div class="hero-grid">
+                <div class="hero-content">
+                    <div class="hero-badges">
+                        <span class="badge badge-success">Handwerker-geprüft</span>
+                        <span class="badge badge-primary">Deutsche Server</span>
+                        <span class="badge badge-orange">Einfach zu bedienen</span>
+                    </div>
+                    
+                    <h1 class="hero-title">
+                        Mehr Zeit für die Baustelle statt Papierkram
+                    </h1>
+                    
+                    <p class="hero-description">
+                        Schluss mit stundenlangem Rechnungen abgleichen! Docuflux prüft automatisch, 
+                        ob Ihre Lieferantenrechnungen mit Bestellungen und Lieferscheinen übereinstimmen. 
+                        <strong>Einfach, schnell und zuverlässig.</strong>
+                    </p>
+                    
+                    <div class="hero-cta">
+                        <a href="#demo" class="btn btn-primary btn-lg">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M5 12h14M12 5l7 7-7 7"/>
+                            </svg>
+                            Jetzt kostenlos testen
+                        </a>
+                        <a href="#video" class="btn btn-secondary btn-lg">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <polygon points="5,3 19,12 5,21"/>
+                            </svg>
+                            2-Min Video ansehen
+                        </a>
+                    </div>
+                    
+                    <div class="hero-trust">
+                        <div class="trust-item">
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/>
+                                <polyline points="22,4 12,14.01 9,11.01"/>
+                            </svg>
+                            Keine Vertragsbindung
+                        </div>
+                        <div class="trust-item">
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/>
+                                <polyline points="22,4 12,14.01 9,11.01"/>
+                            </svg>
+                            30 Tage gratis
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="hero-mockup">
+                    <div class="mockup-card">
+                        <div class="mockup-header">
+                            <h3>Rechnung automatisch geprüft</h3>
+                            <span class="badge badge-success">✓ Stimmt überein</span>
+                        </div>
+                        <div class="mockup-content">
+                            <div class="mockup-row">
+                                <span>Lieferant:</span>
+                                <span class="mockup-value">Baustoff-Zentrum GmbH</span>
+                            </div>
+                            <div class="mockup-row">
+                                <span>Betrag:</span>
+                                <span class="mockup-value">€ 1.247,80</span>
+                            </div>
+                            <div class="mockup-row">
+                                <span>Bestellung:</span>
+                                <span class="mockup-value">BST-2025-0156</span>
+                            </div>
+                            <div class="mockup-row">
+                                <span>Lieferschein:</span>
+                                <span class="mockup-value">LS-789456</span>
+                            </div>
+                            <div class="mockup-row">
+                                <span>Abweichung:</span>
+                                <span class="mockup-value success">€ 0,00</span>
+                            </div>
+                        </div>
+                        <button class="btn btn-primary mockup-btn">
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/>
+                                <polyline points="22,4 12,14.01 9,11.01"/>
+                            </svg>
+                            Freigeben & Weiterleiten
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Problem Section -->
+    <section class="problem-section section bg-gray-50">
+        <div class="container">
+            <div class="section-header text-center">
+                <h2>Kennen Sie das auch?</h2>
+                <p>Als Handwerksmeister haben Sie Besseres zu tun, als stundenlang Rechnungen zu kontrollieren.</p>
+            </div>
+            
+            <div class="problem-grid grid md:grid-cols-3 gap-6">
+                <div class="problem-card card">
+                    <div class="problem-icon">
+                        <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="#ea580c" stroke-width="2">
+                            <circle cx="12" cy="12" r="10"/>
+                            <polyline points="12,6 12,12 16,14"/>
+                        </svg>
+                    </div>
+                    <h3>Feierabend im Büro</h3>
+                    <p>Nach einem langen Tag auf der Baustelle warten noch Rechnungen, die gegen Bestellungen und Lieferscheine geprüft werden müssen.</p>
+                </div>
+                
+                <div class="problem-card card">
+                    <div class="problem-icon">
+                        <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="#ea580c" stroke-width="2">
+                            <path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/>
+                            <line x1="12" y1="9" x2="12" y2="13"/>
+                            <line x1="12" y1="17" x2="12.01" y2="17"/>
+                        </svg>
+                    </div>
+                    <h3>Teure Fehler übersehen</h3>
+                    <p>Falsche Mengen oder Preise auf Rechnungen fallen oft erst zu spät auf – das kostet bares Geld und Nerven.</p>
+                </div>
+                
+                <div class="problem-card card">
+                    <div class="problem-icon">
+                        <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="#ea580c" stroke-width="2">
+                            <rect x="3" y="4" width="18" height="18" rx="2" ry="2"/>
+                            <line x1="16" y1="2" x2="16" y2="6"/>
+                            <line x1="8" y1="2" x2="8" y2="6"/>
+                            <line x1="3" y1="10" x2="21" y2="10"/>
+                        </svg>
+                    </div>
+                    <h3>Buchhaltung wird zur Last</h3>
+                    <p>Die Aufbereitung für den Steuerberater dauert ewig, weil jede Rechnung einzeln kontrolliert werden muss.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Solution Section -->
+    <section id="features" class="solution-section section">
+        <div class="container">
+            <div class="section-header text-center">
+                <h2>So einfach geht's mit Docuflux</h2>
+                <p>Drei Schritte – und Sie haben wieder Zeit für das, was wirklich zählt: Ihr Handwerk.</p>
+            </div>
+            
+            <div class="solution-grid grid md:grid-cols-3 gap-8">
+                <div class="solution-step text-center">
+                    <div class="step-icon">
+                        <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2">
+                            <path d="M14.5 4h-5L7 7H4a2 2 0 0 0-2 2v9a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V9a2 2 0 0 0-2-2h-3l-2.5-3z"/>
+                            <circle cx="12" cy="13" r="3"/>
+                        </svg>
+                    </div>
+                    <h3>1. Dokumente hochladen</h3>
+                    <p>Rechnung, Bestellung und Lieferschein einfach fotografieren oder scannen. Geht auch vom Handy!</p>
+                </div>
+                
+                <div class="solution-step text-center">
+                    <div class="step-icon step-icon-green">
+                        <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2">
+                            <path d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z"/>
+                        </svg>
+                    </div>
+                    <h3>2. Automatische Prüfung</h3>
+                    <p>Unsere KI vergleicht alle Daten: Mengen, Preise, Artikel. Abweichungen werden sofort erkannt.</p>
+                </div>
+                
+                <div class="solution-step text-center">
+                    <div class="step-icon step-icon-orange">
+                        <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2">
+                            <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/>
+                            <polyline points="22,4 12,14.01 9,11.01"/>
+                        </svg>
+                    </div>
+                    <h3>3. Freigeben & fertig</h3>
+                    <p>Alles korrekt? Ein Klick – und die Rechnung geht direkt an Ihren Steuerberater. Fertig!</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Calculator Section -->
+    <section id="benefits" class="calculator-section section bg-handwerk text-white">
+        <div class="container">
+            <div class="section-header text-center">
+                <h2>Wie viel Zeit sparen Sie?</h2>
+                <p>Berechnen Sie, wie viele Stunden pro Woche Sie mit Docuflux zurückgewinnen</p>
+            </div>
+            
+            <div class="calculator-card">
+                <div class="calculator-grid">
+                    <!-- Input Seite -->
+                    <div class="calculator-inputs">
+                        <h3>Ihre aktuellen Werte:</h3>
+                        
+                        <div class="form-group">
+                            <label for="rechnungen-woche" class="form-label">Rechnungen pro Woche</label>
+                            <input 
+                                type="number" 
+                                id="rechnungen-woche" 
+                                class="form-input"
+                                placeholder="z.B. 25"
+                                value="25"
+                                min="1"
+                                max="200"
+                            >
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="minuten-rechnung-hw" class="form-label">Minuten pro Rechnung (aktuell)</label>
+                            <input 
+                                type="number" 
+                                id="minuten-rechnung-hw" 
+                                class="form-input"
+                                placeholder="z.B. 8"
+                                value="8"
+                                min="1"
+                                max="30"
+                            >
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="mitarbeiter" class="form-label">Anzahl Mitarbeiter</label>
+                            <input 
+                                type="number" 
+                                id="mitarbeiter" 
+                                class="form-input"
+                                placeholder="z.B. 5"
+                                value="5"
+                                min="1"
+                                max="50"
+                            >
+                        </div>
+                        
+                        <button class="btn btn-primary calculate-btn" onclick="calculateHandwerkSavings()">
+                            Zeit-Ersparnis berechnen
+                        </button>
+                    </div>
+                    
+                    <!-- Ergebnisse Seite -->
+                    <div class="calculator-results">
+                        <h3>Ihre Zeitersparnis:</h3>
+                        
+                        <div class="results-content">
+                            <div class="result-comparison">
+                                <div class="result-row">
+                                    <span>Aktuell pro Woche:</span>
+                                    <span class="result-value current" id="zeit-aktuell-hw">3.3h</span>
+                                </div>
+                                
+                                <div class="result-row">
+                                    <span>Mit Docuflux:</span>
+                                    <span class="result-value improved" id="zeit-neu-hw">0.8h</span>
+                                </div>
+                            </div>
+                            
+                            <div class="result-divider"></div>
+                            
+                            <div class="result-highlights">
+                                <div class="highlight-item">
+                                    <span>Zeitersparnis pro Woche:</span>
+                                    <span class="highlight-value" id="zeit-ersparnis-hw">2.5h</span>
+                                </div>
+                                
+                                <div class="highlight-item">
+                                    <span>Mehr Zeit pro Monat:</span>
+                                    <span class="highlight-value" id="zeit-monat-hw">10h</span>
+                                </div>
+                                
+                                <div class="highlight-item">
+                                    <span>Mehr Zeit pro Jahr:</span>
+                                    <span class="highlight-value" id="zeit-jahr-hw">130h</span>
+                                </div>
+                                
+                                <div class="highlight-item roi-item">
+                                    <span>Das entspricht:</span>
+                                    <span class="highlight-value roi-value" id="arbeitstage-hw">16 Arbeitstagen</span>
+                                </div>
+                            </div>
+                            
+                            <div class="savings-note">
+                                <p>💡 <strong>Das bedeutet:</strong> Mehr Zeit für Kunden, Familie und neue Aufträge statt Papierkram!</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonials Section -->
+    <section class="testimonials-section section bg-gray-50">
+        <div class="container">
+            <div class="section-header text-center">
+                <h2>Das sagen Handwerksmeister</h2>
+                <p>Bereits über 50 Handwerksbetriebe sparen Zeit mit Docuflux.</p>
+            </div>
+            
+            <div class="testimonials-grid grid md:grid-cols-3 gap-6">
+                <div class="testimonial-card card">
+                    <div class="testimonial-stars">
+                        <span class="star">★</span>
+                        <span class="star">★</span>
+                        <span class="star">★</span>
+                        <span class="star">★</span>
+                        <span class="star">★</span>
+                    </div>
+                    <blockquote>
+                        "Endlich kann ich nach Feierabend wirklich Feierabend machen! Docuflux prüft alle Rechnungen 
+                        automatisch – ich muss nur noch freigeben. Genial einfach!"
+                    </blockquote>
+                    <div class="testimonial-author">
+                        <div class="author-avatar">MW</div>
+                        <div class="author-info">
+                            <div class="author-name">Markus Weber</div>
+                            <div class="author-company">Elektro Weber, Handwerksmeister</div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="testimonial-card card">
+                    <div class="testimonial-stars">
+                        <span class="star">★</span>
+                        <span class="star">★</span>
+                        <span class="star">★</span>
+                        <span class="star">★</span>
+                        <span class="star">★</span>
+                    </div>
+                    <blockquote>
+                        "Letzte Woche hat Docuflux einen Fehler in einer Rechnung gefunden – 300€ zu viel berechnet! 
+                        Das System hat sich schon nach einem Monat bezahlt gemacht."
+                    </blockquote>
+                    <div class="testimonial-author">
+                        <div class="author-avatar">SH</div>
+                        <div class="author-info">
+                            <div class="author-name">Stefan Hoffmann</div>
+                            <div class="author-company">Hoffmann Sanitär & Heizung</div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="testimonial-card card">
+                    <div class="testimonial-stars">
+                        <span class="star">★</span>
+                        <span class="star">★</span>
+                        <span class="star">★</span>
+                        <span class="star">★</span>
+                        <span class="star">★</span>
+                    </div>
+                    <blockquote>
+                        "Meine Frau macht die Buchhaltung und ist begeistert. Alles ist viel sauberer organisiert 
+                        und unser Steuerberater freut sich über die perfekten Unterlagen."
+                    </blockquote>
+                    <div class="testimonial-author">
+                        <div class="author-avatar">JM</div>
+                        <div class="author-info">
+                            <div class="author-name">Jürgen Müller</div>
+                            <div class="author-company">Schreinerei Müller & Sohn</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section id="demo" class="cta-section section bg-handwerk text-white">
+        <div class="container">
+            <div class="cta-content text-center">
+                <h2>Testen Sie Docuflux 30 Tage kostenlos</h2>
+                <p>Keine Vertragsbindung, keine versteckten Kosten. Einfach ausprobieren und überzeugen lassen.</p>
+                
+                <div class="cta-form-card">
+                    <form class="cta-form" onsubmit="handleHandwerkDemo(event)">
+                        <div class="form-grid">
+                            <div class="form-group">
+                                <label for="demo-name-hw" class="form-label">Vor- und Nachname *</label>
+                                <input 
+                                    type="text" 
+                                    id="demo-name-hw" 
+                                    name="name"
+                                    class="form-input" 
+                                    required
+                                    placeholder="Max Mustermann"
+                                >
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="demo-email-hw" class="form-label">E-Mail-Adresse *</label>
+                                <input 
+                                    type="email" 
+                                    id="demo-email-hw" 
+                                    name="email"
+                                    class="form-input" 
+                                    required
+                                    placeholder="max@handwerk-mustermann.de"
+                                >
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="demo-betrieb" class="form-label">Betrieb / Gewerk</label>
+                                <input 
+                                    type="text" 
+                                    id="demo-betrieb" 
+                                    name="company"
+                                    class="form-input"
+                                    placeholder="z.B. Elektro Mustermann"
+                                >
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="demo-phone-hw" class="form-label">Telefon</label>
+                                <input 
+                                    type="tel" 
+                                    id="demo-phone-hw" 
+                                    name="phone"
+                                    class="form-input"
+                                    placeholder="+49 30 12345678"
+                                >
+                            </div>
+                        </div>
+                        
+                        <button type="submit" class="btn btn-primary btn-lg cta-submit">
+                            Jetzt 30 Tage kostenlos testen
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M5 12h14M12 5l7 7-7 7"/>
+                            </svg>
+                        </button>
+                        
+                        <div class="form-trust">
+                            <div class="trust-item">
+                                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/>
+                                    <polyline points="22,4 12,14.01 9,11.01"/>
+                                </svg>
+                                Keine Vertragsbindung
+                            </div>
+                            <div class="trust-item">
+                                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/>
+                                    <polyline points="22,4 12,14.01 9,11.01"/>
+                                </svg>
+                                Sofort einsatzbereit
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FAQ Section -->
+    <section id="faq" class="faq-section section">
+        <div class="container">
+            <div class="section-header text-center">
+                <h2>Häufig gestellte Fragen</h2>
+                <p>Alles was Handwerker über Docuflux wissen möchten.</p>
+            </div>
+            
+            <div class="faq-grid">
+                <div class="faq-item">
+                    <button class="faq-question" onclick="toggleFAQ(this)">
+                        <span>Ist Docuflux auch für kleine Betriebe geeignet?</span>
+                        <svg class="faq-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <polyline points="6,9 12,15 18,9"/>
+                        </svg>
+                    </button>
+                    <div class="faq-answer">
+                        <p>Ja, absolut! Docuflux ist speziell für kleine und mittlere Handwerksbetriebe entwickelt. Schon ab 10 Rechnungen pro Monat lohnt sich der Einsatz.</p>
+                    </div>
+                </div>
+                
+                <div class="faq-item">
+                    <button class="faq-question" onclick="toggleFAQ(this)">
+                        <span>Kann ich Docuflux auch vom Handy nutzen?</span>
+                        <svg class="faq-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <polyline points="6,9 12,15 18,9"/>
+                        </svg>
+                    </button>
+                    <div class="faq-answer">
+                        <p>Selbstverständlich! Sie können Rechnungen direkt mit dem Smartphone fotografieren und hochladen. Docuflux funktioniert auf allen Geräten.</p>
+                    </div>
+                </div>
+                
+                <div class="faq-item">
+                    <button class="faq-question" onclick="toggleFAQ(this)">
+                        <span>Wie sicher sind meine Geschäftsdaten?</span>
+                        <svg class="faq-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <polyline points="6,9 12,15 18,9"/>
+                        </svg>
+                    </button>
+                    <div class="faq-answer">
+                        <p>Ihre Daten sind bei uns sicher! Wir nutzen deutsche Server, sind DSGVO-konform und haben eine ISO 27001 Zertifizierung für Datensicherheit.</p>
+                    </div>
+                </div>
+                
+                <div class="faq-item">
+                    <button class="faq-question" onclick="toggleFAQ(this)">
+                        <span>Funktioniert das auch mit meinem Steuerberater?</span>
+                        <svg class="faq-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <polyline points="6,9 12,15 18,9"/>
+                        </svg>
+                    </button>
+                    <div class="faq-answer">
+                        <p>Ja! Docuflux exportiert alle Daten im DATEV-Format. Ihr Steuerberater kann die Dateien direkt importieren – ohne zusätzliche Arbeit.</p>
+                    </div>
+                </div>
+                
+                <div class="faq-item">
+                    <button class="faq-question" onclick="toggleFAQ(this)">
+                        <span>Was kostet Docuflux nach der Testphase?</span>
+                        <svg class="faq-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <polyline points="6,9 12,15 18,9"/>
+                        </svg>
+                    </button>
+                    <div class="faq-answer">
+                        <p>Für Handwerksbetriebe starten wir bei 79€/Monat für bis zu 50 Rechnungen. Tester der ersten Stunde erhalten dauerhaft 30% Rabatt.</p>
+                    </div>
+                </div>
+                
+                <div class="faq-item">
+                    <button class="faq-question" onclick="toggleFAQ(this)">
+                        <span>Brauche ich spezielle Software oder Hardware?</span>
+                        <svg class="faq-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <polyline points="6,9 12,15 18,9"/>
+                        </svg>
+                    </button>
+                    <div class="faq-answer">
+                        <p>Nein! Docuflux läuft komplett im Browser. Sie brauchen nur Internet und können sofort loslegen – auf PC, Tablet oder Smartphone.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="main-footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3 class="footer-title">Docuflux</h3>
+                    <p class="footer-description">
+                        Automatische Rechnungsprüfung für Handwerksbetriebe. 
+                        Mehr Zeit für das Wesentliche.
+                    </p>
+                    <div class="social-links">
+                        <a href="#" class="social-link" aria-label="LinkedIn">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+                                <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/>
+                            </svg>
+                        </a>
+                        <a href="#" class="social-link" aria-label="YouTube">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+                                <path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/>
+                            </svg>
+                        </a>
+                    </div>
+                </div>
+                
+                <div class="footer-section">
+                    <h4 class="footer-subtitle">Für Handwerk</h4>
+                    <ul class="footer-links">
+                        <li><a href="#funktionen" class="footer-link">Funktionen</a></li>
+                        <li><a href="#preise" class="footer-link">Preise</a></li>
+                        <li><a href="#integration" class="footer-link">DATEV-Integration</a></li>
+                        <li><a href="#mobile" class="footer-link">Mobile App</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-section">
+                    <h4 class="footer-subtitle">Support</h4>
+                    <ul class="footer-links">
+                        <li><a href="#hilfe" class="footer-link">Hilfe-Center</a></li>
+                        <li><a href="#kontakt" class="footer-link">Kontakt</a></li>
+                        <li><a href="#schulung" class="footer-link">Kostenlose Schulung</a></li>
+                        <li><a href="#status" class="footer-link">System-Status</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-section">
+                    <h4 class="footer-subtitle">Kontakt</h4>
+                    <ul class="footer-contact">
+                        <li class="contact-item">
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/>
+                                <polyline points="22,6 12,13 2,6"/>
+                            </svg>
+                            <a href="mailto:handwerk@docuflux.de" class="footer-link">handwerk@docuflux.de</a>
+                        </li>
+                        <li class="contact-item">
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/>
+                            </svg>
+                            <a href="tel:+4930123456789" class="footer-link">+49 (0) 30 12345678</a>
+                        </li>
+                        <li class="contact-item">
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/>
+                                <circle cx="12" cy="10" r="3"/>
+                            </svg>
+                            <span class="footer-text">Berlin, Deutschland</span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="footer-bottom">
+                <div class="footer-bottom-content">
+                    <p class="copyright">
+                        © 2025 Docuflux. Alle Rechte vorbehalten.
+                    </p>
+                    <div class="legal-links">
+                        <a href="/impressum" class="legal-link">Impressum</a>
+                        <a href="/datenschutz" class="legal-link">Datenschutz</a>
+                        <a href="/agb" class="legal-link">AGB</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- JavaScript -->
+    <script src="assets/js/handwerk-scripts.js"></script>
+</body>
+</html>
