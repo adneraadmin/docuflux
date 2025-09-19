@@ -2,8 +2,8 @@ name: Deploy to VPS
 
 on:
   push:
-    branches: [ "main" ]     # falls deine Default-Branch anders heißt, hier anpassen
-  workflow_dispatch:         # manueller Start möglich
+    branches: [ "main" ]      # ggf. anpassen
+  workflow_dispatch:          # manueller Start möglich
 
 jobs:
   deploy:
@@ -13,36 +13,36 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
 
-      - name: Set up SSH
-        env:
-          SSH_PRIVATE_KEY: ${{ secrets.SSH_PRIVATE_KEY }}
-          SSH_KNOWN_HOSTS: ${{ secrets.SSH_KNOWN_HOSTS }}
+      - name: Write SSH key & known_hosts
         run: |
           mkdir -p ~/.ssh
-          echo "$SSH_PRIVATE_KEY" > ~/.ssh/id_ed25519
+          printf '%s\n' "${{ secrets.SSH_PRIVATE_KEY }}" > ~/.ssh/id_ed25519
           chmod 600 ~/.ssh/id_ed25519
-          echo "$SSH_KNOWN_HOSTS" > ~/.ssh/known_hosts
+          printf '%s\n' "${{ secrets.SSH_KNOWN_HOSTS }}" > ~/.ssh/known_hosts
           chmod 644 ~/.ssh/known_hosts
 
+      - name: Test SSH connectivity
+        run: |
+          ssh -vvv \
+            -p "${{ secrets.SSH_PORT }}" \
+            -i ~/.ssh/id_ed25519 \
+            -o UserKnownHostsFile=~/.ssh/known_hosts \
+            -o StrictHostKeyChecking=yes \
+            "${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST }}" "echo OK && whoami"
+
       - name: Rsync files to server
-        env:
-          SSH_USER: ${{ secrets.SSH_USER }}
-          SSH_HOST: ${{ secrets.SSH_HOST }}
-          SSH_PORT: ${{ secrets.SSH_PORT }}
-          DEPLOY_PATH: ${{ secrets.DEPLOY_PATH }}
         run: |
           rsync -az --delete \
             --exclude ".git" \
             --exclude ".github" \
-            -e "ssh -p $SSH_PORT -i ~/.ssh/id_ed25519 -o UserKnownHostsFile=~/.ssh/known_hosts -o StrictHostKeyChecking=yes" \
-            ./ "$SSH_USER@$SSH_HOST:$DEPLOY_PATH/"
+            -e "ssh -p ${{ secrets.SSH_PORT }} -i ~/.ssh/id_ed25519 -o UserKnownHostsFile=~/.ssh/known_hosts -o StrictHostKeyChecking=yes" \
+            ./ "${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST }}:${{ secrets.DEPLOY_PATH }}/"
 
       - name: Post-deploy (optional) - run remote script if present
-        env:
-          SSH_USER: ${{ secrets.SSH_USER }}
-          SSH_HOST: ${{ secrets.SSH_HOST }}
-          SSH_PORT: ${{ secrets.SSH_PORT }}
-          DEPLOY_PATH: ${{ secrets.DEPLOY_PATH }}
         run: |
-          ssh -p $SSH_PORT -i ~/.ssh/id_ed25519 -o UserKnownHostsFile=~/.ssh/known_hosts -o StrictHostKeyChecking=yes \
-            "$SSH_USER@$SSH_HOST" "if [ -x $DEPLOY_PATH/deploy.sh ]; then $DEPLOY_PATH/deploy.sh; fi"
+          ssh -p "${{ secrets.SSH_PORT }}" \
+              -i ~/.ssh/id_ed25519 \
+              -o UserKnownHostsFile=~/.ssh/known_hosts \
+              -o StrictHostKeyChecking=yes \
+              "${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST }}" \
+              "if [ -x '${{ secrets.DEPLOY_PATH }}/deploy.sh' ]; then '${{ secrets.DEPLOY_PATH }}/deploy.sh'; fi"
