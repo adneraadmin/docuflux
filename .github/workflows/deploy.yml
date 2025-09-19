@@ -2,7 +2,7 @@ name: Deploy to VPS
 
 on:
   push:
-    branches: [ "main" ]      # ggf. anpassen
+    branches: [ "main" ]      # ggf. anpassen (z. B. "master")
   workflow_dispatch:          # manueller Start möglich
 
 jobs:
@@ -28,21 +28,4 @@ jobs:
             -i ~/.ssh/id_ed25519 \
             -o UserKnownHostsFile=~/.ssh/known_hosts \
             -o StrictHostKeyChecking=yes \
-            gf@168.231.109.89 "echo OK && whoami"
-
-            - name: Rsync files to server (hardcoded)
-        run: |
-          rsync -az --delete \
-            --exclude ".git" \
-            --exclude ".github" \
-            -e "ssh -p 22 -i ~/.ssh/id_ed25519 -o UserKnownHostsFile=~/.ssh/known_hosts -o StrictHostKeyChecking=yes" \
-            ./ gf@168.231.109.89:/opt/docuflux/
-
-      - name: Post-deploy (optional) - run remote script if present
-        run: |
-          ssh -p "${{ secrets.SSH_PORT }}" \
-              -i ~/.ssh/id_ed25519 \
-              -o UserKnownHostsFile=~/.ssh/known_hosts \
-              -o StrictHostKeyChecking=yes \
-              "${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST }}" \
-              "if [ -x '${{ secrets.DEPLOY_PATH }}/deploy.sh' ]; then '${{ secrets.DEPLOY_PATH }}/deploy.sh'; fi"
+            gf@168.231.109.89 "echo OK && w
