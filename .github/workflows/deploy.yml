@@ -1,216 +1,48 @@
-name: DocuFlux VPS Deployment
+name: Deploy to VPS
 
 on:
   push:
-    branches: [ master, main ]
-  workflow_dispatch:
+    branches: [ "main" ]     # falls deine Default-Branch anders heißt, hier anpassen
+  workflow_dispatch:         # manueller Start möglich
 
 jobs:
   deploy:
     runs-on: ubuntu-latest
-    
+
     steps:
-    - name: Repository auschecken
-      uses: actions/checkout@v4
-      
-    - name: Deployment auf VPS
-      uses: appleboy/ssh-action@v1.0.0
-      with:
-        host: ${{ secrets.VPS_HOST }}
-        username: ${{ secrets.VPS_USER }}
-        key: ${{ secrets.VPS_SSH_KEY }}
-        port: 22
-        timeout: 300s
-        command_timeout: 60s
-        script: |
-          set -e
-          
-          echo "🚀 DocuFlux Deployment gestartet..."
-          echo "📅 Deployment begonnen um: $(date)"
-          echo "👤 Benutzer: $(whoami)"
-          
-          # Zum Deployment-Verzeichnis navigieren
-          if [ ! -d "/opt/docuflux" ]; then
-            echo "📁 Erstelle Deployment-Verzeichnis..."
-            sudo mkdir -p /opt/docuflux
-            sudo chown $(whoami):$(whoami) /opt/docuflux
-          fi
-          
-          cd /opt/docuflux || { echo "❌ Fehler: Kann nicht zu /opt/docuflux navigieren"; exit 1; }
-          echo "📂 Arbeite in: $(pwd)"
-          
-          # Backup der aktuellen Deployment erstellen
-          if [ -d "landing-pages-backup" ]; then
-            echo "🗑️ Entferne altes Backup..."
-            rm -rf landing-pages-backup
-          fi
-          
-          if [ -d "landing-pages" ]; then
-            echo "💾 Erstelle Backup der aktuellen Deployment..."
-            cp -r landing-pages landing-pages-backup
-          fi
-          
-          # Neuesten Code von GitHub herunterladen (HTTPS - kein SSH erforderlich)
-          echo "📥 Lade neuesten Code von GitHub herunter..."
-          
-          # Entferne existierendes Repository-Verzeichnis
-          if [ -d "repo" ]; then
-            rm -rf repo
-          fi
-          
-          # Repository mit HTTPS klonen (getestet und funktioniert)
-          if git clone https://github.com/adneraadmin/docuflux.git repo; then
-            echo "✅ Repository erfolgreich geklont"
-          else
-            echo "⚠️ Git-Klon fehlgeschlagen, versuche wget-Methode..."
-            wget -O repo.zip https://github.com/adneraadmin/docuflux/archive/refs/heads/master.zip
-            unzip -o repo.zip
-            mv docuflux-master repo
-            rm repo.zip
-            echo "✅ Repository über wget heruntergeladen"
-          fi
-          
-          # Landing Pages von apps/landing-pages aktualisieren
-          if [ -d "repo/apps/landing-pages" ]; then
-            echo "📋 Aktualisiere Landing Pages vom Repository..."
-            mkdir -p landing-pages
-            
-            # Kopiere alle Inhalte von apps/landing-pages
-            cp -r repo/apps/landing-pages/* landing-pages/ 2>/dev/null || echo "Keine Dateien in repo/apps/landing-pages"
-            
-            echo "📂 Landing Pages aktualisiert:"
-            ls -la landing-pages/
-          else
-            echo "⚠️ Kein apps/landing-pages Verzeichnis im Repository gefunden"
-          fi
-          
-          # Zusätzliche Dateien kopieren falls vorhanden
-          if [ -f "repo/Dockerfile.kmu" ]; then
-            echo "🐳 Aktualisiere Dockerfiles..."
-            cp repo/Dockerfile.* . 2>/dev/null || echo "Keine Dockerfiles zu aktualisieren"
-          fi
-          
-          if [ -f "repo/docker-compose.yml" ]; then
-            echo "🐳 Aktualisiere docker-compose.yml..."
-            sudo cp repo/docker-compose.yml /root/ || echo "Fehler beim Aktualisieren der docker-compose.yml"
-          fi
-          
-          if [ -f "repo/nginx.conf" ]; then
-            echo "⚙️ Aktualisiere nginx Konfiguration..."
-            cp repo/nginx.conf .
-          fi
-          
-          # Docker-Verfügbarkeit prüfen
-          echo "🐳 Prüfe Docker-Status..."
-          if ! command -v docker >/dev/null 2>&1; then
-            echo "❌ Docker ist nicht verfügbar"
-            exit 1
-          fi
-          
-          if ! command -v docker-compose >/dev/null 2>&1; then
-            echo "❌ docker-compose ist nicht verfügbar"
-            exit 1
-          fi
-          
-          echo "✅ Docker und docker-compose sind verfügbar"
-          
-          # Zum docker-compose Verzeichnis navigieren
-          if [ -f "/root/docker-compose.yml" ]; then
-            echo "🐳 Verwende docker-compose aus /root"
-            cd /root
-          elif [ -f "/opt/docuflux/docker-compose.yml" ]; then
-            echo "🐳 Verwende docker-compose aus /opt/docuflux"
-            cd /opt/docuflux
-          else
-            echo "❌ docker-compose.yml nicht gefunden"
-            echo "📂 Inhalt von /root:"
-            sudo ls -la /root/ || echo "Kann nicht auf /root zugreifen"
-            echo "📂 Inhalt von /opt/docuflux:"
-            ls -la /opt/docuflux/
-            exit 1
-          fi
-          
-          # Docker Container neu erstellen
-          echo "🐳 Erstelle Docker Container neu..."
-          services="docuflux-kmu docuflux-handwerk docuflux-buchhaltung docuflux-beta"
-          
-          for service in $services; do
-            echo "Erstelle $service..."
-            if docker-compose build --no-cache $service 2>/dev/null; then
-              echo "✅ $service erfolgreich erstellt"
-            elif sudo docker-compose build --no-cache $service 2>/dev/null; then
-              echo "✅ $service erfolgreich mit sudo erstellt"
-            else
-              echo "⚠️ Fehler beim Erstellen von $service, fahre fort..."
-            fi
-          done
-          
-          # Services neu starten
-          echo "🔄 Starte Services neu..."
-          if docker-compose up -d $services 2>/dev/null; then
-            echo "✅ Services erfolgreich gestartet"
-          elif sudo docker-compose up -d $services; then
-            echo "✅ Services erfolgreich mit sudo gestartet"
-          else
-            echo "⚠️ Einige Services konnten nicht gestartet werden"
-          fi
-          
-          # Warten bis Services gestartet sind
-          echo "⏳ Warte bis Services gestartet sind..."
-          sleep 30
-          
-          # Service-Status prüfen
-          echo "🧪 Prüfe Service-Status..."
-          for service in $services; do
-            if docker-compose ps -q $service >/dev/null 2>&1; then
-              status=$(docker-compose ps $service 2>/dev/null | tail -n +3 | awk '{print $4}' || echo "unbekannt")
-              echo "📊 $service: $status"
-            elif sudo docker-compose ps -q $service >/dev/null 2>&1; then
-              status=$(sudo docker-compose ps $service 2>/dev/null | tail -n +3 | awk '{print $4}' || echo "unbekannt")
-              echo "📊 $service: $status (mit sudo geprüft)"
-            else
-              echo "❌ $service: Nicht gefunden"
-            fi
-          done
-          
-          # Endpunkte testen
-          echo "🔍 Teste Endpunkte..."
-          for subdomain in kmu handwerk buchhaltung beta; do
-            echo "Teste $subdomain.docuflux.de..."
-            status=$(curl -s -o /dev/null -w "%{http_code}" --connect-timeout 10 --max-time 30 https://$subdomain.docuflux.de 2>/dev/null || echo "000")
-            if [ "$status" = "200" ] || [ "$status" = "301" ] || [ "$status" = "302" ]; then
-              echo "✅ $subdomain.docuflux.de antwortet (HTTP $status)"
-            else
-              echo "⚠️ $subdomain.docuflux.de gab HTTP $status zurück"
-            fi
-          done
-          
-          echo "🎉 Deployment abgeschlossen!"
-          echo "📅 Deployment beendet um: $(date)"
-          
-    - name: Deployment-Status benachrichtigen
-      if: always()
-      run: |
-        if [ ${{ job.status }} == 'success' ]; then
-          echo "✅ Deployment erfolgreich!"
-          echo ""
-          echo "🌐 Landing Pages aktualisiert und verfügbar unter:"
-          echo "   - https://kmu.docuflux.de"
-          echo "   - https://handwerk.docuflux.de"
-          echo "   - https://buchhaltung.docuflux.de"
-          echo "   - https://beta.docuflux.de"
-          echo ""
-          echo "📋 Repository-Struktur bestätigt:"
-          echo "   - Landing Pages in apps/landing-pages/ gefunden"
-          echo "   - Dateien erfolgreich auf VPS kopiert"
-          echo "   - Docker Services neu erstellt und gestartet"
-        else
-          echo "❌ Deployment fehlgeschlagen!"
-          echo "Bitte prüfen Sie die Logs oben für Details."
-          echo ""
-          echo "🔧 Fehlerbehebung:"
-          echo "   1. VPS_HOST, VPS_USER und VPS_SSH_KEY Secrets überprüfen"
-          echo "   2. Docker-Installation und Berechtigungen auf VPS prüfen"
-          echo "   3. Sicherstellen dass /opt/docuflux existiert und beschreibbar ist"
-          echo "   4. Überprüfen dass docker-compose.yml in /root oder /opt/docuflux existiert"
-        fi
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Set up SSH
+        env:
+          SSH_PRIVATE_KEY: ${{ secrets.SSH_PRIVATE_KEY }}
+          SSH_KNOWN_HOSTS: ${{ secrets.SSH_KNOWN_HOSTS }}
+        run: |
+          mkdir -p ~/.ssh
+          echo "$SSH_PRIVATE_KEY" > ~/.ssh/id_ed25519
+          chmod 600 ~/.ssh/id_ed25519
+          echo "$SSH_KNOWN_HOSTS" > ~/.ssh/known_hosts
+          chmod 644 ~/.ssh/known_hosts
+
+      - name: Rsync files to server
+        env:
+          SSH_USER: ${{ secrets.SSH_USER }}
+          SSH_HOST: ${{ secrets.SSH_HOST }}
+          SSH_PORT: ${{ secrets.SSH_PORT }}
+          DEPLOY_PATH: ${{ secrets.DEPLOY_PATH }}
+        run: |
+          rsync -az --delete \
+            --exclude ".git" \
+            --exclude ".github" \
+            -e "ssh -p $SSH_PORT -i ~/.ssh/id_ed25519 -o UserKnownHostsFile=~/.ssh/known_hosts -o StrictHostKeyChecking=yes" \
+            ./ "$SSH_USER@$SSH_HOST:$DEPLOY_PATH/"
+
+      - name: Post-deploy (optional) - run remote script if present
+        env:
+          SSH_USER: ${{ secrets.SSH_USER }}
+          SSH_HOST: ${{ secrets.SSH_HOST }}
+          SSH_PORT: ${{ secrets.SSH_PORT }}
+          DEPLOY_PATH: ${{ secrets.DEPLOY_PATH }}
+        run: |
+          ssh -p $SSH_PORT -i ~/.ssh/id_ed25519 -o UserKnownHostsFile=~/.ssh/known_hosts -o StrictHostKeyChecking=yes \
+            "$SSH_USER@$SSH_HOST" "if [ -x $DEPLOY_PATH/deploy.sh ]; then $DEPLOY_PATH/deploy.sh; fi"
