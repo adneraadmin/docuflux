@@ -220,3 +220,4 @@ Bei Problemen:
 ---
 
 **Status:** 🚧 Deployment-ready, GitHub Actions Fix erforderlich
+# Branch renamed to main for GitHub Actions compatibility
