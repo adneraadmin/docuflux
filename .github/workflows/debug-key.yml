@@ -1,0 +1,23 @@
+name: Debug SSH Key
+
+on:
+  workflow_dispatch:
+
+jobs:
+  debug:
+    runs-on: ubuntu-latest
+    steps:
+    - name: Debug SSH Key
+      run: |
+        echo "=== SSH Key Debug ==="
+        echo "Key length: ${#VPS_SSH_KEY}"
+        echo "First line: $(echo "$VPS_SSH_KEY" | head -1)"
+        echo "Last line: $(echo "$VPS_SSH_KEY" | tail -1)"
+        echo "Line count: $(echo "$VPS_SSH_KEY" | wc -l)"
+        
+        # Test key parsing
+        echo "$VPS_SSH_KEY" > /tmp/test_key
+        chmod 600 /tmp/test_key
+        ssh-keygen -l -f /tmp/test_key || echo "Key validation failed"
+      env:
+        VPS_SSH_KEY: ${{ secrets.VPS_SSH_KEY }}

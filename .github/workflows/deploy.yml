@@ -1,0 +1,62 @@
+name: Deploy to VPS
+
+on:
+  push:
+    branches: [ "main" ]      # ggf. auf "master" ändern
+  workflow_dispatch:          # manueller Start
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Write SSH key & known_hosts
+        run: |
+          mkdir -p ~/.ssh
+          printf '%s\n' "${{ secrets.SSH_PRIVATE_KEY }}" > ~/.ssh/id_ed25519
+          chmod 600 ~/.ssh/id_ed25519
+          printf '%s\n' "${{ secrets.SSH_KNOWN_HOSTS }}" > ~/.ssh/known_hosts
+          chmod 644 ~/.ssh/known_hosts
+
+      - name: Test SSH connectivity (hardcoded)
+        shell: bash
+        run: |
+          cat > test-ssh.sh <<'BASH'
+          set -euo pipefail
+          ssh -vvv \
+            -p 22 \
+            -i ~/.ssh/id_ed25519 \
+            -o UserKnownHostsFile=~/.ssh/known_hosts \
+            -o StrictHostKeyChecking=yes \
+            gf@168.231.109.89 "echo OK && whoami"
+          BASH
+          bash test-ssh.sh
+
+      - name: Rsync files to server (hardcoded)
+        shell: bash
+        run: |
+          cat > deploy-rsync.sh <<'BASH'
+          set -euo pipefail
+          rsync -az --delete \
+            --exclude ".git" \
+            --exclude ".github" \
+            -e "ssh -p 22 -i ~/.ssh/id_ed25519 -o UserKnownHostsFile=~/.ssh/known_hosts -o StrictHostKeyChecking=yes" \
+            ./ gf@168.231.109.89:/opt/docuflux/
+          BASH
+          bash deploy-rsync.sh
+
+      - name: Run remote deploy script
+        shell: bash
+        run: |
+          cat > run-remote.sh <<'BASH'
+          set -euo pipefail
+          ssh -p 22 \
+            -i ~/.ssh/id_ed25519 \
+            -o UserKnownHostsFile=~/.ssh/known_hosts \
+            -o StrictHostKeyChecking=yes \
+            gf@168.231.109.89 '/usr/local/bin/docuflux-deploy.sh'
+          BASH
+          bash run-remote.sh
